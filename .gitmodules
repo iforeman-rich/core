@@ -1,0 +1,3 @@
+[submodule "iforeman-story"]
+	path = iforeman-story
+	url = https://github.com/iforeman-rich/iforeman-story.git
