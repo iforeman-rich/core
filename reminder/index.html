@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reminder for Me</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,400&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000000;
+    --bg-panel: #0a0906;
+    --ink: #ede6d9;
+    --ink-dim: #8f877a;
+    --ink-faint: #4a453c;
+    --ember: #d99a52;
+    --ember-glow: rgba(217,154,82,0.16);
+    --line: #1c1912;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); height: 100%; }
+  body {
+    height: 100%;
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px;
+    overflow-x: hidden;
+  }
+
+  .frame {
+    width: 100%;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .greeting {
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    color: var(--ink-dim);
+    min-height: 1.2em;
+  }
+
+  .orb-wrap {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .orb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--ember);
+    box-shadow:
+      0 0 20px 6px var(--ember-glow),
+      0 0 60px 30px var(--ember-glow);
+    animation: breathe 4.5s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50% { transform: scale(1.35); opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .orb { animation: none; }
+  }
+
+  .question {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(1.5rem, 5vw, 2.1rem);
+    line-height: 1.35;
+    color: var(--ink);
+    max-width: 26ch;
+    min-height: 3.6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+  }
+  .question.fading { opacity: 0; }
+  @media (prefers-reduced-motion: reduce) {
+    .question { transition: none; }
+  }
+
+  .next-btn {
+    background: none;
+    border: none;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+    padding: 10px 4px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--ink-faint);
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+  .next-btn:hover, .next-btn:focus-visible {
+    color: var(--ember);
+    border-color: var(--ember);
+  }
+  .next-btn:focus-visible {
+    outline: 2px solid var(--ember);
+    outline-offset: 4px;
+  }
+
+  footer {
+    margin-top: 8px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .quote {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: var(--ink-dim);
+    line-height: 1.5;
+  }
+  .signature {
+    font-size: 0.7rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.03em;
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <div class="greeting" id="greeting"></div>
+
+    <div class="orb-wrap"><div class="orb"></div></div>
+
+    <div class="question" id="question"></div>
+
+    <button class="next-btn" id="nextBtn">pertanyaan lain</button>
+
+    <footer>
+      <div class="quote">"Belajar mati, maka kau belajar hidup." — Morrie</div>
+      <div class="signature">Zoltraak Setiap Hari</div>
+    </footer>
+  </div>
+
+<script>
+  const pools = {
+    pagi: [
+      "Kalau hari ini hari terakhirku, apa yang akan kutunda lagi?",
+      "Apa satu hal penting yang kutunda karena merasa 'nanti masih ada waktu'?",
+      "Siapa yang ingin benar-benar kutemani hari ini, bukan sekadar kutemui?",
+      "Apa yang akan kulakukan hari ini kalau bukan karena takut kehabisan waktu, tapi karena aku sungguh ingin?"
+    ],
+    malam: [
+      "Hari ini, aku benar-benar hadir untuk siapa — atau untuk apa?",
+      "Adakah momen hari ini yang kulewati sambil pikiranku ada di tempat lain?",
+      "Dibanding kemarin, apakah aku 1% lebih hadir, bukan cuma 1% lebih sibuk?",
+      "Apa yang kutunda hari ini, dan pantaskah itu ditunda?"
+    ]
+  };
+
+  const hour = new Date().getHours();
+  const isPagi = hour >= 4 && hour < 15;
+  const periode = isPagi ? 'pagi' : 'malam';
+  const greetingText = isPagi ? 'pagi.' : 'malam ini.';
+  const pool = pools[periode];
+
+  const greetingEl = document.getElementById('greeting');
+  const questionEl = document.getElementById('question');
+  const nextBtn = document.getElementById('nextBtn');
+  greetingEl.textContent = greetingText;
+
+  const storageKey = 'zoltraak_last_' + periode;
+  let lastIndex = -1;
+  try {
+    const stored = localStorage.getItem(storageKey);
+    if (stored !== null) lastIndex = parseInt(stored, 10);
+  } catch (e) {}
+
+  function pickIndex() {
+    if (pool.length <= 1) return 0;
+    let idx;
+    do { idx = Math.floor(Math.random() * pool.length); } while (idx === lastIndex);
+    return idx;
+  }
+
+  function showQuestion(idx, animate) {
+    const render = () => {
+      questionEl.textContent = pool[idx];
+      questionEl.classList.remove('fading');
+    };
+    if (animate) {
+      questionEl.classList.add('fading');
+      setTimeout(render, 480);
+    } else {
+      render();
+    }
+    lastIndex = idx;
+    try { localStorage.setItem(storageKey, String(idx)); } catch (e) {}
+  }
+
+  showQuestion(pickIndex(), false);
+
+  nextBtn.addEventListener('click', () => {
+    showQuestion(pickIndex(), true);
+  });
+</script>
+</body>
+</html>
