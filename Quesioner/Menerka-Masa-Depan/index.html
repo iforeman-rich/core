@@ -198,7 +198,7 @@ function build(){
   "TUGASMU, berdasarkan jawaban saya:\n"+
   "1. Ringkas siapa saya: pola utama, kekuatan, titik buta, dan kontradiksi antar jawaban saya.\n"+
   "2. Skenario A, jika pola hidup saya sekarang diteruskan: gambarkan hidup saya "+cptsKalimat+". Di tiap titik umur, bagi menjadi tiga bagian: (1) Badan & kesehatan, (2) Keluarga & hubungan, (3) Uang & pekerjaan.\n"+
-  "3. Skenario B, jika saya mengubah beberapa hal kecil: sebutkan 4-5 perubahan konkret yang paling berpengaruh, lalu gambarkan hidup saya "+cptsKalimat+" dengan tiga bagian yang sama (Badan & kesehatan, Keluarga & hubungan, Uang & pekerjaan). Perubahan di Skenario B harus realistis untuk orang dengan waktu dan tenaga terbatas sesuai kondisi hidup yang saya jawab (misalnya jam tidur, tanggungan keluarga, jam kerja); larang saran yang butuh waktu atau tenaga yang jelas tidak saya punya.\n"+
+  "3. Skenario B, jika saya mengubah beberapa hal kecil: sebutkan 4-5 perubahan konkret yang paling berpengaruh, lalu gambarkan hidup saya "+cptsKalimat+" dengan tiga bagian yang sama (Badan & kesehatan, Keluarga & hubungan, Uang & pekerjaan). Perubahan di Skenario B harus realistis untuk orang dengan waktu dan tenaga terbatas sesuai kondisi hidup yang saya jawab (misalnya jam tidur, tanggungan keluarga, jam kerja); larang saran yang butuh waktu atau tenaga yang jelas tidak saya punya. Untuk tiap perubahan, tulis perkiraan menit per hari yang dibutuhkan (contoh: \"± 15 menit/hari\"). Total semua perubahan tidak boleh lebih dari 60 menit per hari; tulis total menitnya.\n"+
   "4. Surat kilas balik di umur 80 untuk masing-masing skenario, ditulis dari sudut pandang orang pertama (\"aku\"), sebagai saya di masa depan.\n"+
   "5. Tulis satu cerita pendek atau perumpamaan yang menjelaskan pola terbesar saya.\n"+
   "6. Lima pertanyaan tajam di akhir untuk saya renungkan.\n\n"+
@@ -212,7 +212,7 @@ function build(){
   "- Jangan bertanya balik. Kalau ada yang kurang jelas, buat asumsi dan tulis asumsinya di awal jawaban.\n"+
   "- Di tiap titik umur, sebutkan juga umur anak, pasangan, dan orang tua saya sesuai jawaban saya. Kalau jawaban saya tidak menyebutnya, kamu boleh berasumsi dan menandainya dengan (asumsi).\n"+
   "- Kalau ada hal kesehatan atau mental yang perlu diperhatikan, sampaikan dengan hati-hati dan tanpa menghakimi.\n"+
-  "- Panjang total jawabanmu sekitar 3000-4000 kata. Kalau jawabanmu hampir mencapai batas panjang, selesaikan dulu bagian yang sedang ditulis, akhiri dengan [bersambung], dan saya akan membalas \"lanjut\".\n";
+  "- Panjang total jawabanmu sekitar 3000-4000 kata. Sisakan ruang untuk surat umur 80, cerita, dan lima pertanyaan tajam. Lebih baik skenario umur 60 dan 70 dibuat ringkas daripada bagian penutup terpotong. Kalau jawabanmu hampir mencapai batas panjang, selesaikan dulu bagian yang sedang ditulis, akhiri dengan [bersambung], dan saya akan membalas \"lanjut\".\n";
   if(who.length)p+="\nDATA DIRI\n"+who.join("\n")+"\n";
   const ctx=String(st.ctx||"").trim();
   if(ctx)p+="\nKonteks tambahan dari saya\n"+ctx+"\n";
