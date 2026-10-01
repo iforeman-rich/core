@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Menerka Masa Depan</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{--bg:#000;--panel:#08080a;--line:#1d1d22;--text:#e9e9ee;--mut:#8b8b96;--acc:#9fb0ff;--acc-d:#2a3166;--ok:#8fe3b4;
+--serif:"Newsreader",Georgia,"Times New Roman",serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 24px);background:#000;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:#000;color:var(--text);font:17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+.bar{position:sticky;top:0;z-index:5;background:#000;padding:calc(env(safe-area-inset-top,0px) + 8px) 20px 8px;border-bottom:1px solid var(--line)}
+.bar-in{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:14px;font-size:14px;color:var(--mut)}
+.track{flex:1;height:3px;background:var(--line);border-radius:3px;overflow:hidden}
+#fill{height:100%;width:0;background:var(--acc);transition:width .25s}
+main{max-width:640px;margin:0 auto;padding:40px 20px 96px}
+h1{font:600 clamp(32px,8vw,46px)/1.1 var(--serif);margin:0 0 16px;letter-spacing:-.01em}
+.lead{color:var(--mut);margin:0 0 28px;max-width:52ch}
+.me{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:12px}
+label.f{display:block;font-size:14px;color:var(--mut)}
+input,textarea{width:100%;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;outline:none;margin-top:6px}
+input:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-d)}
+textarea{resize:none;min-height:3.4em;line-height:1.55;overflow:hidden}
+::placeholder{color:#55555e}
+section{margin-top:56px}
+h2{font:600 26px/1.2 var(--serif);margin:0 0 4px;padding-top:24px;border-top:1px solid var(--line)}
+.cnt{color:var(--mut);font-size:14px;margin:0 0 8px}
+.q{margin-top:26px}
+.q p{margin:0;font:400 20px/1.4 var(--serif)}
+.q .n{display:inline-block;min-width:2ch;color:var(--mut);font-variant-numeric:tabular-nums}
+.q.done .n{color:var(--ok)}
+.end{margin-top:72px;padding-top:24px;border-top:1px solid var(--line)}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+button{font:600 16px var(--sans);border-radius:10px;padding:12px 20px;cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--text);min-height:46px}
+button.main{background:var(--acc);color:#000;border-color:var(--acc)}
+button:hover{border-color:var(--acc)}
+button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+button.warn{border-color:#ff8a8a;color:#ff8a8a}
+#out{display:none;margin-top:28px}
+#out textarea{min-height:320px;overflow:auto;resize:vertical;font:14px/1.6 ui-monospace,Menlo,Consolas,monospace;color:#cfd2e6}
+.note{color:var(--mut);font-size:14px;margin:10px 0 0}
+#msg{color:var(--ok);font-size:14px;min-height:1.4em;margin-top:8px}
+@media (max-width:480px){.me{grid-template-columns:1fr}.q p{font-size:19px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bar"><div class="bar-in"><span id="lbl">0 / 51</span><div class="track"><div id="fill"></div></div></div></div>
+<main>
+<h1>Menerka masa depan</h1>
+<p class="lead">51 pertanyaan tentang hidupmu sekarang. Jawab jujur, bukan yang ideal. Boleh singkat. Tidak berlaku? Tulis "skip". Jawabanmu tersimpan otomatis di browser ini, jadi aman kalau halaman ter-refresh. Di akhir, semuanya digabung jadi satu prompt untuk ditempel ke AI.</p>
+<div class="me">
+<label class="f">Nama panggilan (boleh kosong)<input id="name" autocomplete="off"></label>
+<label class="f">Umur<input id="age" inputmode="numeric" autocomplete="off"></label>
+</div>
+<div id="form"></div>
+<div class="end">
+<h2 style="border:0;padding:0">Selesai? Gabungkan jadi prompt</h2>
+<p class="note">Pertanyaan yang kosong dilewati. Kamu bisa kembali ke atas dan mengisi kapan saja.</p>
+<div class="row">
+<button class="main" id="gen">Buat prompt</button>
+<button id="rst">Hapus semua jawaban</button>
+</div>
+<div id="out">
+<label class="f">Prompt untuk AI<textarea id="prompt" readonly></textarea></label>
+<div class="row"><button class="main" id="copy">Salin prompt</button></div>
+<div id="msg" role="status"></div>
+</div>
+</div>
+</main>
+<script>
+const D=[
+["Dasar",["Sehari-hari kamu bangun jam berapa dan tidur jam berapa?","Kalau digambarkan, satu hari biasamu dari pagi sampai malam itu seperti apa?","Dalam 3 kata, kamu orang yang seperti apa menurut dirimu sendiri?","Menurut orang terdekat, kamu orang yang seperti apa?"]],
+["Kesehatan",["Olahraga seperti apa, dan seberapa sering?","Pola makanmu bagaimana? Teratur atau asal kenyang?","Merokok, begadang, atau minum kopi berlebihan? Seberapa sering?","Ada riwayat penyakit di keluarga yang kamu tahu?","Kalau stres, kamu larinya ke mana? (tidur, makan, kerja, main game, diam, dll)","Seberapa sering kamu merasa capek tapi tetap dipaksa jalan?"]],
+["Hubungan dan keluarga",["Hubunganmu dengan orang tua dan saudara seperti apa?","Dengan pasangan, apa yang paling kamu syukuri dan paling sering jadi gesekan?","Mau punya anak? Berapa, dan kapan? Kalau sudah, kamu mau jadi orang tua seperti apa?","Berapa teman yang benar-benar dekat? Seberapa sering kamu bertemu mereka?","Kamu lebih suka sendiri atau ramai? Setelah lama bersosialisasi, kamu terisi atau terkuras?","Ada hubungan yang retak atau belum selesai, dan kamu belum berusaha memperbaikinya?"]],
+["Agama dan spiritual",["Seberapa rutin ibadahmu sekarang?","Seberapa penting agama dalam keputusan hidupmu?","Ada hal spiritual yang ingin kamu perdalam tapi belum sempat?","Kamu ingin dikenang sebagai orang seperti apa di mata Tuhan dan manusia?"]],
+["Uang",["Kamu lebih suka menabung, investasi, atau langsung dipakai?","Ada utang atau cicilan besar? Seberapa membebani?","Berapa penghasilan bulanan yang menurutmu \"cukup tenang\"? Dan yang \"wah\"?","Kamu mudah tergoda beli sesuatu karena impuls atau FOMO?","Kalau semua sumber penghasilanmu berhenti hari ini, berapa bulan kamu bisa bertahan?"]],
+["Pekerjaan dan usaha",["Dari semua yang kamu kerjakan sekarang, mana yang paling bikin kamu hidup dan mana yang paling bikin capek?","Kamu lebih suka membangun hal baru atau merawat yang sudah jalan?","Seberapa sering kamu memulai sesuatu baru sebelum yang lama selesai?","Kamu lebih nyaman memimpin tim, bekerja sendiri, atau jadi spesialis di belakang layar?","Kalau 10 tahun lagi hanya boleh mengerjakan satu hal, apa yang kamu pilih?","Seberapa besar kamu ingin pekerjaan atau usahamu tetap jalan tanpa kamu harus selalu hadir?"]],
+["Minat dan belajar",["Hal apa yang bisa kamu kerjakan berjam-jam tanpa sadar waktu?","Apa yang sedang kamu pelajari sekarang, dan kenapa?","Ada hobi atau mimpi yang sudah lama kamu tunda?","Kamu lebih banyak mengonsumsi (baca, nonton, main) atau menghasilkan (menulis, membuat)? Perkiraan persentasenya?"]],
+["Gaya hidup",["Kamu mau tinggal di mana 10 tahun lagi: kota, desa, atau luar negeri?","Rumah dan kendaraan seperti apa yang kamu bayangkan nanti?","Berapa jam sehari kamu pegang HP atau layar, dan untuk apa saja?","Kamu suka rutinitas yang stabil atau suka kejutan dan perubahan?","Seberapa sering kamu liburan atau istirahat benar-benar? Kapan terakhir?"]],
+["Mental dan karakter",["Apa kelemahan terbesarmu yang sudah kamu tahu tapi sulit diubah?","Kalau gagal, reaksi pertamamu apa?","Kamu tipe yang sabar atau ingin cepat hasil?","Kamu sering membandingkan diri dengan orang lain? Dalam hal apa?","Apa ketakutan terbesarmu tentang masa depan?","Ada kebiasaan buruk yang kamu tahu bakal jadi masalah kalau diteruskan 20 tahun lagi?"]],
+["Nilai dan penyesalan",["Apa tiga hal yang paling penting dalam hidupmu, urut dari yang pertama?","Kalau harus memilih antara uang, waktu, atau kesehatan, mana yang kamu korbankan dulu? Jujur.","Apa penyesalan terbesar sampai saat ini?","Kalau hari ini kamu bisa kasih satu nasihat ke dirimu umur 18, apa itu?","Kamu ingin ditulis seperti apa di buku kenangan keluargamu nanti?"]]
+];
+const TOTAL=D.reduce((s,x)=>s+x[1].length,0);
+const KEY="menerka-masa-depan-v1";
+let st={name:"",age:"",a:{}};
+try{const r=localStorage.getItem(KEY);if(r)st=Object.assign(st,JSON.parse(r))}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const grow=t=>{t.style.height="auto";t.style.height=t.scrollHeight+2+"px"};
+
+let n=0,html="";
+for(const [title,qs] of D){
+  html+=`<section><h2>${title}</h2><p class="cnt">${qs.length} pertanyaan</p>`;
+  for(const q of qs){n++;
+    html+=`<div class="q" id="q${n}"><p><span class="n">${n}.</span> ${esc(q)}</p><textarea data-n="${n}" rows="2" aria-label="Jawaban nomor ${n}" placeholder="Tulis jawabanmu..."></textarea></div>`;
+  }
+  html+="</section>";
+}
+$("form").innerHTML=html;
+
+function refresh(){
+  let c=0;
+  for(let i=1;i<=TOTAL;i++){
+    const ok=(st.a[i]||"").trim()!=="";
+    if(ok)c++;
+    $("q"+i).classList.toggle("done",ok);
+  }
+  $("lbl").textContent=c+" / "+TOTAL;
+  $("fill").style.width=(c/TOTAL*100)+"%";
+  return c;
+}
+document.querySelectorAll("textarea[data-n]").forEach(t=>{
+  t.value=st.a[t.dataset.n]||"";grow(t);
+});
+$("name").value=st.name||"";$("age").value=st.age||"";
+refresh();
+
+document.addEventListener("input",e=>{
+  const t=e.target;
+  if(t.dataset&&t.dataset.n){st.a[t.dataset.n]=t.value;grow(t);refresh();save()}
+  else if(t.id==="name"){st.name=t.value;save()}
+  else if(t.id==="age"){st.age=t.value;save()}
+});
+
+function build(){
+  const c=refresh();
+  const who=[];
+  if(st.name.trim())who.push("Nama panggilan: "+st.name.trim());
+  if(st.age.trim())who.push("Umur: "+st.age.trim()+" tahun");
+  let p="Kamu adalah pendamping refleksi hidup yang jujur, hangat, dan tidak menggurui.\n\n"+
+  "Di bawah ini ada jawaban jujur saya atas "+TOTAL+" pertanyaan tentang hidup saya sekarang (kesehatan, hubungan, agama, uang, pekerjaan, minat, gaya hidup, karakter, dan nilai). Saya menjawab "+c+" dari "+TOTAL+" pertanyaan; yang kosong berarti dilewati.\n\n"+
+  "TUGASMU, berdasarkan jawaban saya:\n"+
+  "1. Ringkas siapa saya: pola utama, kekuatan, titik buta, dan kontradiksi antar jawaban saya.\n"+
+  "2. Skenario A, jika pola hidup saya sekarang diteruskan: gambarkan hidup saya di umur 30, 40, 50, 60, dan 70 (kesehatan, hubungan, uang, pekerjaan, spiritual).\n"+
+  "3. Skenario B, jika saya mengubah beberapa hal kecil: sebutkan 4-5 perubahan konkret yang paling berpengaruh, lalu gambarkan hidup saya di umur yang sama.\n"+
+  "4. Surat kilas balik di umur 80 untuk masing-masing skenario, ditulis dari sudut pandang saya sendiri.\n"+
+  "5. Lima pertanyaan tajam di akhir untuk saya renungkan.\n\n"+
+  "ATURAN:\n"+
+  "- Pakai bahasa Indonesia yang sederhana dan santai, tapi pemahamannya dalam.\n"+
+  "- Jujur, jangan hanya menyenangkan saya. Ini tebakan berdasarkan pola, bukan ramalan; katakan itu sekali saja, singkat.\n"+
+  "- Rujuk jawaban saya secara spesifik, jangan jawab generik.\n"+
+  "- Kalau ada hal kesehatan atau mental yang perlu diperhatikan, sampaikan dengan hati-hati dan tanpa menghakimi.\n"+
+  "- Kalau ada hal yang kurang jelas, tanyakan dulu sebelum menjawab.\n";
+  if(who.length)p+="\nDATA DIRI\n"+who.join("\n")+"\n";
+  p+="\nJAWABAN SAYA\n";
+  let i=0;
+  for(const [title,qs] of D){
+    let blk="";
+    for(const q of qs){i++;
+      const a=(st.a[i]||"").trim();
+      if(a)blk+="\nP"+i+". "+q+"\nJ: "+a+"\n";
+    }
+    if(blk)p+="\n## "+title+"\n"+blk;
+  }
+  return p;
+}
+$("gen").onclick=()=>{
+  const c=refresh();
+  const o=$("out");o.style.display="block";
+  if(c===0){$("prompt").value="";$("msg").textContent="Belum ada jawaban. Isi minimal beberapa pertanyaan dulu.";o.scrollIntoView({behavior:"smooth",block:"center"});return}
+  $("prompt").value=build();$("msg").textContent="";
+  o.scrollIntoView({behavior:"smooth",block:"start"});
+};
+$("copy").onclick=async()=>{
+  const t=$("prompt");
+  if(!t.value){$("msg").textContent="Belum ada prompt untuk disalin.";return}
+  try{await navigator.clipboard.writeText(t.value);$("msg").textContent="Prompt tersalin."}
+  catch(e){t.focus();t.select();try{document.execCommand("copy");$("msg").textContent="Prompt tersalin."}catch(_){$("msg").textContent="Gagal menyalin otomatis. Pilih teks di atas lalu salin manual."}}
+};
+let armed=false,tm;
+$("rst").onclick=()=>{
+  const b=$("rst");
+  if(!armed){armed=true;b.textContent="Yakin? Klik sekali lagi";b.classList.add("warn");tm=setTimeout(()=>{armed=false;b.textContent="Hapus semua jawaban";b.classList.remove("warn")},4000);return}
+  clearTimeout(tm);armed=false;b.classList.remove("warn");b.textContent="Hapus semua jawaban";
+  st={name:"",age:"",a:{}};
+  try{localStorage.removeItem(KEY)}catch(e){}
+  document.querySelectorAll("textarea[data-n]").forEach(t=>{t.value="";grow(t)});
+  $("name").value="";$("age").value="";$("prompt").value="";$("out").style.display="none";refresh();
+};
+</script>
+</body>
+</html>
