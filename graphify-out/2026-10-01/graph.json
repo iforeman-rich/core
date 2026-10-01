@@ -4,17 +4,6 @@
   "graph": {},
   "nodes": [
     {
-      "label": "config.js",
-      "file_type": "code",
-      "source_file": "Quesioner/Menerka-Masa-Depan/config.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "quesioner_menerka_masa_depan_config",
-      "community": 6,
-      "community_name": "config.js",
-      "norm_label": "config.js"
-    },
-    {
       "label": "Quesioner/apps-script/code.gs.js",
       "file_type": "code",
       "source_file": "Quesioner/apps-script/code.gs.js",

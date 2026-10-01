@@ -49,19 +49,19 @@
     "ast_hash": "4bbcd37da310febbd93503bd5d458eb7",
     "semantic_hash": ""
   },
+  "Quesioner/Menerka-Masa-Depan.html": {
+    "mtime": 1790857406.1798518,
+    "ast_hash": "653d8aee6938c34c51e9dccd4fa12afd",
+    "semantic_hash": ""
+  },
   "Quesioner/apps-script/code.gs.js": {
-    "mtime": 1790858116.643212,
-    "ast_hash": "1af322bcdf22c070a54c291403f9a79a",
+    "mtime": 1790857288.579847,
+    "ast_hash": "b1cb0d2768e3e13f653afb192890fb87",
     "semantic_hash": ""
   },
-  "Quesioner/Menerka-Masa-Depan/config.js": {
-    "mtime": 1790858452.3351378,
-    "ast_hash": "bbf8173e4fcf67479a7170341c5aeef8",
-    "semantic_hash": ""
-  },
-  "Quesioner/Menerka-Masa-Depan/index.html": {
-    "mtime": 1790858089.6065443,
-    "ast_hash": "aec7a7e135119cdb7ff56154e7e506f1",
+  "Quesioner/komentar.html": {
+    "mtime": 1790857246.1765122,
+    "ast_hash": "b72b06af1ff46baf7a663ba201e1bbc9",
     "semantic_hash": ""
   }
 }

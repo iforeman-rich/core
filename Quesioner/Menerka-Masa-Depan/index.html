@@ -11,7 +11,7 @@
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 24px);background:#000;color-scheme:dark}
 *,*::before,*::after{box-sizing:inherit}
-body{margin:0;background:#000;color:var(--text);font:17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+body{margin:0;background:#000;color:var(--text);font:17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
 .bar{position:sticky;top:0;z-index:5;background:#000;padding:calc(env(safe-area-inset-top,0px) + 8px) 20px 8px;border-bottom:1px solid var(--line)}
 .bar-in{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:14px;font-size:14px;color:var(--mut)}
 .track{flex:1;height:3px;background:var(--line);border-radius:3px;overflow:hidden}
@@ -21,7 +21,7 @@ h1{font:600 clamp(32px,8vw,46px)/1.1 var(--serif);margin:0 0 16px;letter-spacing
 .lead{color:var(--mut);margin:0 0 28px;max-width:52ch}
 .me{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:12px}
 label.f{display:block;font-size:14px;color:var(--mut)}
-input,textarea{width:100%;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;outline:none;margin-top:6px}
+input,textarea{width:100%;max-width:100%;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:16px;min-height:44px;outline:none;margin-top:6px}
 input:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-d)}
 textarea{resize:none;min-height:3.4em;line-height:1.55;overflow:hidden}
 ::placeholder{color:#55555e}
@@ -40,10 +40,34 @@ button:hover{border-color:var(--acc)}
 button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 button.warn{border-color:#ff8a8a;color:#ff8a8a}
 #out{display:none;margin-top:28px}
-#out textarea{min-height:320px;overflow:auto;resize:vertical;font:14px/1.6 ui-monospace,Menlo,Consolas,monospace;color:#cfd2e6}
+#out textarea{min-height:320px;overflow:auto;resize:vertical;font:16px/1.6 ui-monospace,Menlo,Consolas,monospace;color:#cfd2e6}
 .note{color:var(--mut);font-size:14px;margin:10px 0 0}
+a{color:var(--acc);text-decoration:none}
+a:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+a.komentar-link{display:inline-block;min-height:44px;padding:12px 0;font-size:16px;line-height:20px;border-bottom:1px solid var(--acc-d)}
+a.komentar-link:hover{border-bottom-color:var(--acc)}
 #msg{color:var(--ok);font-size:14px;min-height:1.4em;margin-top:8px}
+/* ===== Bagian komentar (tema dark OLED yang sama dengan kuesioner) ===== */
+#komentar{margin-top:0;scroll-margin-top:calc(env(safe-area-inset-top,0px) + 48px)}
+.kmt-wrap{max-width:720px;margin:0 auto;padding:0 20px 48px}
+#komentar h2{margin-bottom:6px}
+.kmt-jumlah{font:400 15px var(--sans);color:var(--mut);margin-left:8px;white-space:nowrap}
+.kmt-daftar{display:flex;flex-direction:column;gap:12px;margin-top:18px}
+.kmt-item{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.kmt-meta{display:block;font-size:14px;color:var(--mut);margin-bottom:6px;letter-spacing:.02em;overflow-wrap:anywhere}
+.kmt-teks{margin:0;font-size:17px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.kmt-kosong{color:var(--mut);font-style:italic;font-size:16px;margin:0}
+.kmt-error{color:#ff8a8a;font-size:16px;margin:0}
+.kmt-form{margin-top:26px}
+.kmt-form .f{margin-bottom:14px}
+#kmt-teks{resize:vertical;overflow:auto;min-height:96px;line-height:1.55}
+.kmt-status{font-size:14px;min-height:1.4em;margin:12px 0 0;color:var(--mut)}
+.kmt-status:empty{display:none}
+.kmt-status.ok{color:var(--ok)}
+.kmt-status.err{color:#ff8a8a}
+.kmt-status.notice{color:var(--acc)}
 @media (max-width:480px){.me{grid-template-columns:1fr}.q p{font-size:19px}}
+@media (max-width:560px){.kmt-form .row button{width:100%}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -52,6 +76,7 @@ button.warn{border-color:#ff8a8a;color:#ff8a8a}
 <main>
 <h1>Menerka masa depan</h1>
 <p class="lead">51 pertanyaan tentang hidupmu sekarang. Jawab jujur, bukan yang ideal. Boleh singkat. Tidak berlaku? Tulis "skip". Jawabanmu tersimpan otomatis di browser ini, jadi aman kalau halaman ter-refresh. Di akhir, semuanya digabung jadi satu prompt untuk ditempel ke AI.</p>
+<p class="note"><a class="komentar-link" href="#komentar">Lihat komentar &darr;</a></p>
 <div class="me">
 <label class="f">Nama panggilan (boleh kosong)<input id="name" autocomplete="off"></label>
 <label class="f">Umur<input id="age" inputmode="numeric" autocomplete="off"></label>
@@ -71,6 +96,21 @@ button.warn{border-color:#ff8a8a;color:#ff8a8a}
 </div>
 </div>
 </main>
+<section id="komentar" aria-labelledby="kmt-judul">
+<div class="kmt-wrap">
+<h2 id="kmt-judul">Komentar<span class="kmt-jumlah" id="kmt-jumlah"></span></h2>
+<div class="kmt-daftar" id="kmt-daftar">
+<p class="kmt-kosong" id="kmt-muat">Memuat komentar&hellip;</p>
+</div>
+<form class="kmt-form" id="kmt-form" novalidate>
+<label class="f">Nama<input id="kmt-nama" type="text" maxlength="60" placeholder="Nama" autocomplete="name" required></label>
+<label class="f">Komentar<textarea id="kmt-teks" rows="3" maxlength="1000" placeholder="Tulis komentar..." required></textarea></label>
+<div class="row"><button class="main" type="submit" id="kmt-kirim">Kirim</button></div>
+</form>
+<p class="kmt-status" id="kmt-status" role="status"></p>
+</div>
+</section>
+<script src="config.js"></script>
 <script>
 const D=[
 ["Dasar",["Sehari-hari kamu bangun jam berapa dan tidur jam berapa?","Kalau digambarkan, satu hari biasamu dari pagi sampai malam itu seperti apa?","Dalam 3 kata, kamu orang yang seperti apa menurut dirimu sendiri?","Menurut orang terdekat, kamu orang yang seperti apa?"]],
@@ -85,10 +125,17 @@ const D=[
 ["Nilai dan penyesalan",["Apa tiga hal yang paling penting dalam hidupmu, urut dari yang pertama?","Kalau harus memilih antara uang, waktu, atau kesehatan, mana yang kamu korbankan dulu? Jujur.","Apa penyesalan terbesar sampai saat ini?","Kalau hari ini kamu bisa kasih satu nasihat ke dirimu umur 18, apa itu?","Kamu ingin ditulis seperti apa di buku kenangan keluargamu nanti?"]]
 ];
 const TOTAL=D.reduce((s,x)=>s+x[1].length,0);
-const KEY="menerka-masa-depan-v1";
+// --- penyimpanan progres: sessionStorage (per-tab), prefix "menerka:" ---
+const KEY="menerka:menerka-masa-depan-v1";
+const LEGACY_KEY="menerka-masa-depan-v1"; // versi lama (localStorage), dipakai sekali untuk migrasi
 let st={name:"",age:"",a:{}};
-try{const r=localStorage.getItem(KEY);if(r)st=Object.assign(st,JSON.parse(r))}catch(e){}
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+let mem={}; // fallback in-memory bila sessionStorage tidak tersedia (mode privat)
+const sget=k=>{try{const v=sessionStorage.getItem(k);if(v!==null)return v}catch(e){}return k in mem?mem[k]:null};
+const sset=(k,v)=>{mem[k]=v;try{sessionStorage.setItem(k,v)}catch(e){}};
+const sdel=k=>{delete mem[k];try{sessionStorage.removeItem(k)}catch(e){}};
+try{let r=sget(KEY);if(r===null){try{r=localStorage.getItem(LEGACY_KEY)}catch(e){}}
+  if(r)st=Object.assign(st,JSON.parse(r))}catch(e){}
+const save=()=>{try{sset(KEY,JSON.stringify(st))}catch(e){}};
 const $=id=>document.getElementById(id);
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const grow=t=>{t.style.height="auto";t.style.height=t.scrollHeight+2+"px"};
@@ -178,10 +225,136 @@ $("rst").onclick=()=>{
   if(!armed){armed=true;b.textContent="Yakin? Klik sekali lagi";b.classList.add("warn");tm=setTimeout(()=>{armed=false;b.textContent="Hapus semua jawaban";b.classList.remove("warn")},4000);return}
   clearTimeout(tm);armed=false;b.classList.remove("warn");b.textContent="Hapus semua jawaban";
   st={name:"",age:"",a:{}};
-  try{localStorage.removeItem(KEY)}catch(e){}
+  sdel(KEY);
+  try{localStorage.removeItem(LEGACY_KEY)}catch(e){}
   document.querySelectorAll("textarea[data-n]").forEach(t=>{t.value="";grow(t)});
   $("name").value="";$("age").value="";$("prompt").value="";$("out").style.display="none";refresh();
 };
+</script>
+<script>
+/* ============================================================
+   Bagian komentar (blok script terpisah + IIFE) — kalau blok ini
+   gagal, JS kuesioner di atas tetap jalan normal.
+   Pola identik iforeman-story/Kisah-Babylon/script.js:
+   GET  : fetch(URL, {cache:"no-store"})
+   POST : fetch(URL, {method:"POST", body:new URLSearchParams({...})})
+          -> form-encoded tanpa header kustom (lolos CORS, tanpa preflight)
+   Render data user hanya dengan textContent (tanpa innerHTML).
+   ============================================================ */
+(function(){
+"use strict";
+try{
+  // URL diisi di config.js (dimuat sebelum skrip utama)
+  var kmtUrl=(window.APP_CONFIG&&window.APP_CONFIG.APPS_SCRIPT_URL)||"";
+
+  // draft sessionStorage (prefix "menerka:") + fallback in-memory (mode privat)
+  var DRAFT_NAMA="menerka:komentar-nama",DRAFT_TEKS="menerka:komentar-teks";
+  var kmtMem={};
+  var kmtSget=function(k){try{var v=sessionStorage.getItem(k);if(v!==null)return v}catch(e){}return (k in kmtMem)?kmtMem[k]:null};
+  var kmtSset=function(k,v){kmtMem[k]=v;try{sessionStorage.setItem(k,v)}catch(e){}};
+  var kmtSdel=function(k){delete kmtMem[k];try{sessionStorage.removeItem(k)}catch(e){}};
+
+  var kmtById=function(id){return document.getElementById(id)};
+  var kmtEl=function(tag,cls,teks){var n=document.createElement(tag);if(cls)n.className=cls;if(teks!==undefined)n.textContent=teks;return n};
+  function kmtFormatWaktu(ts){
+    if(!ts)return"";
+    try{var d=new Date(ts);if(isNaN(d.getTime()))return String(ts);
+      return d.toLocaleDateString("id-ID",{day:"numeric",month:"short",year:"numeric"});
+    }catch(e){return String(ts)}
+  }
+  function kmtRenderItem(k){
+    var item=kmtEl("div","kmt-item");
+    var meta=kmtEl("span","kmt-meta");
+    meta.textContent=(k.nama||"")+" — "+kmtFormatWaktu(k.timestamp);
+    item.appendChild(meta);
+    item.appendChild(kmtEl("p","kmt-teks",k.komentar||""));
+    return item;
+  }
+
+  var kmtDaftar=kmtById("kmt-daftar"),
+      kmtForm=kmtById("kmt-form"),
+      kmtNama=kmtById("kmt-nama"),
+      kmtTeks=kmtById("kmt-teks"),
+      kmtBtn=kmtById("kmt-kirim"),
+      kmtStatus=kmtById("kmt-status"),
+      kmtJumlah=kmtById("kmt-jumlah");
+  var kmtBusy=false;
+
+  function kmtSetStatus(t,jenis){kmtStatus.textContent=t||"";kmtStatus.className="kmt-status"+(jenis?" "+jenis:"")}
+  function kmtShowDaftar(t,cls){kmtDaftar.textContent="";kmtDaftar.appendChild(kmtEl("p",cls||"kmt-kosong",t))}
+  function kmtSetJumlah(n){kmtJumlah.textContent=(typeof n==="number")?(" ("+n+")"):""}
+
+  async function kmtMuat(){
+    if(!kmtUrl){
+      kmtShowDaftar("Komentar belum diaktifkan. Fitur ini akan menyala setelah penulis mengaktifkan komentar.");
+      kmtSetJumlah("");
+      return;
+    }
+    kmtShowDaftar("Memuat komentar…");
+    try{
+      var res=await fetch(kmtUrl,{cache:"no-store"});
+      var data=await res.json();
+      var list=Array.isArray(data)?data:(data&&Array.isArray(data.komentar)?data.komentar:[]);
+      kmtDaftar.textContent="";
+      if(!list.length){kmtDaftar.appendChild(kmtEl("p","kmt-kosong","Belum ada komentar. Jadilah yang pertama!"));kmtSetJumlah(0);return}
+      list.forEach(function(k){kmtDaftar.appendChild(kmtRenderItem(k))});
+      kmtSetJumlah(list.length);
+    }catch(e){
+      kmtShowDaftar("Gagal memuat komentar. Muat ulang halaman beberapa saat lagi.","kmt-error");
+      kmtSetJumlah("");
+    }
+  }
+
+  kmtForm.addEventListener("submit",function(e){
+    e.preventDefault();
+    if(kmtBusy)return;
+    if(!kmtUrl){kmtSetStatus("Komentar belum diaktifkan — komentar belum bisa dikirim saat ini.","notice");return}
+    var nama=kmtNama.value.trim(),komentar=kmtTeks.value.trim();
+    if(!nama||!komentar){kmtSetStatus("Nama dan komentar wajib diisi.","err");return}
+    if(nama.length>60||komentar.length>1000){kmtSetStatus("Nama maksimal 60 dan komentar maksimal 1000 karakter.","err");return}
+
+    kmtBusy=true;kmtBtn.disabled=true;kmtBtn.textContent="Mengirim…";kmtSetStatus("");
+    fetch(kmtUrl,{method:"POST",body:new URLSearchParams({nama:nama,komentar:komentar})})
+      .then(function(r){return r.json()})
+      .then(function(data){
+        if(data&&data.success){
+          if(!kmtDaftar.querySelector(".kmt-item"))kmtDaftar.textContent="";
+          kmtDaftar.prepend(kmtRenderItem({nama:nama,komentar:komentar,timestamp:data.timestamp}));
+          var s=kmtJumlah.textContent.match(/\((\d+)\)/);
+          kmtSetJumlah(s?(parseInt(s[1],10)+1):"");
+          kmtNama.value="";kmtTeks.value="";kmtSdel(DRAFT_NAMA);kmtSdel(DRAFT_TEKS);
+          kmtSetStatus("Komentar terkirim. Terima kasih!","ok");
+        }else{
+          kmtSetStatus((data&&data.error)||"Gagal mengirim komentar.","err");
+        }
+        kmtBusy=false;kmtBtn.disabled=false;kmtBtn.textContent="Kirim";
+      })
+      .catch(function(){
+        kmtSetStatus("Gagal mengirim. Periksa koneksi internet Anda lalu coba lagi.","err");
+        kmtBusy=false;kmtBtn.disabled=false;kmtBtn.textContent="Kirim";
+      });
+  });
+
+  // draft nama/komentar
+  kmtNama.value=kmtSget(DRAFT_NAMA)||"";
+  kmtTeks.value=kmtSget(DRAFT_TEKS)||"";
+  kmtNama.addEventListener("input",function(){kmtSset(DRAFT_NAMA,kmtNama.value)});
+  kmtTeks.addEventListener("input",function(){kmtSset(DRAFT_TEKS,kmtTeks.value)});
+
+  // kondisi URL kosong / config.js gagal dimuat: nol fetch, tombol nonaktif
+  if(!kmtUrl){
+    kmtBtn.disabled=true;
+    kmtSetStatus("Komentar belum diaktifkan. Kamu tetap bisa menulis dulu — pengiriman menyusul.","notice");
+  }
+
+  // muat komentar setelah halaman siap
+  function kmtMulai(){kmtMuat().catch(function(){})}
+  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",kmtMulai)}else{kmtMulai()}
+}catch(err){
+  // kegagalan bagian komentar tidak boleh mematikan kuesioner
+  try{var fe=document.getElementById("kmt-status");if(fe){fe.textContent="Komentar sementara tidak dapat dimuat.";fe.className="kmt-status"}var fb=document.getElementById("kmt-kirim");if(fb)fb.disabled=true}catch(_){}
+}
+})();
 </script>
 </body>
 </html>
