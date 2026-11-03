@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pembawa dan Hakim</title>
+<style>
+:root{--bg:#f6f3ec;--card:#fff;--tx:#1d1b17;--mu:#6b665a;--bd:#e0dacb;--teal:#1f8a82;--orange:#c2691d;--blue:#2d6cb5;--purple:#7a52b3;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0a0a;--card:#141414;--tx:#ece9e2;--mu:#9a968b;--bd:#2a2a2a;--teal:#4fc3b8;--orange:#e39a52;--blue:#6ea4e0;--purple:#a98be0}}
+:root[data-theme="dark"]{--bg:#0a0a0a;--card:#141414;--tx:#ece9e2;--mu:#9a968b;--bd:#2a2a2a;--teal:#4fc3b8;--orange:#e39a52;--blue:#6ea4e0;--purple:#a98be0}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:720px;margin:0 auto;padding:22px 16px 80px}
+h1{font-size:1.9rem;line-height:1.2;margin:.2em 0}h2{font-size:1.2rem;margin:.1em 0 .5em}
+.tag{font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--mu)}
+.q{color:var(--mu)}.small{font-size:.88rem;color:var(--mu)}
+section{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--teal);border-radius:12px;padding:18px;margin:20px 0}
+section:nth-of-type(2){border-left-color:var(--orange)}section:nth-of-type(3){border-left-color:var(--blue)}section:nth-of-type(4){border-left-color:var(--purple)}section:nth-of-type(5){border-left-color:var(--teal)}
+button,textarea{font:inherit}
+button{background:var(--teal);color:#06110f;border:0;border-radius:9px;padding:10px 15px;cursor:pointer;font-weight:600}
+button.alt{background:transparent;color:var(--tx);border:1px solid var(--bd);font-weight:500;text-align:left}
+button.alt.on{border-color:var(--teal);background:color-mix(in srgb,var(--teal) 12%,transparent)}
+textarea{width:100%;min-height:90px;padding:12px;border-radius:9px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);margin:8px 0}
+.reveal{display:none;margin-top:12px;padding:12px 14px;border-left:3px solid var(--orange);background:color-mix(in srgb,var(--orange) 10%,transparent);border-radius:6px}
+.reveal.show{display:block}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}.col{flex-direction:column}
+.sl{margin:12px 0;font-size:.92rem}.sl label{display:flex;justify-content:space-between}input[type=range]{width:100%;accent-color:var(--teal)}
+.dots{display:grid;grid-template-columns:repeat(15,1fr);gap:5px;margin:12px 0}
+.dots i{aspect-ratio:1;border-radius:50%;background:var(--bd);transition:background .25s}.dots i.on{background:var(--teal)}
+.big{font-size:1.5rem;font-weight:700}
+.bar{height:16px;background:var(--bd);border-radius:8px;overflow:hidden;margin:6px 0}.bar i{display:block;height:100%;background:var(--purple);transition:width .35s}
+.verdict{font-weight:600;min-height:3.4em}
+.chk label{display:block;margin:6px 0;cursor:pointer}
+.prog{height:5px;background:var(--bd);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}.prog i{display:block;height:100%;width:0;background:var(--teal);transition:width .4s}
+</style></head><body>
+<div class="prog"><i id="pb"></i></div>
+<main>
+<div class="tag">Potongan 2 dari 5 · Belajar sambil berpikir</div>
+<h1>Pembawa dan Hakim</h1>
+<p class="q">Di potongan 1 kita lihat aturan main bisa diganti. Tapi siapa yang membawa aturan itu, dan siapa yang menjaganya? Dua pertanyaan itu menentukan apakah orang mau ikut dan bertahan.</p>
+
+<section>
+<div class="tag">Langkah 1 · Tebak dulu</div>
+<h2>Dua orang, pesan yang sama</h2>
+<p>Di sebuah pasar, dua orang menyampaikan pesan persis sama: “Berhentilah menipu timbangan.”</p>
+<div class="row col">
+<button class="alt" onclick="pick(0,this)"><b>A.</b> Orang asing yang pintar bicara, argumennya rapi sekali.</button>
+<button class="alt" onclick="pick(1,this)"><b>B.</b> Pedagang yang selama bertahun-tahun dikenal jujur, bicaranya biasa saja.</button></div>
+<p>Pesan siapa yang lebih mungkin dijalankan warga pasar? Ketuk salah satu.</p>
+<div class="reveal" id="r0">Biasanya pesan <b>B</b>. Orang menilai <b>pembawanya sebelum menilai isinya</b>. Karena itu pembawa yang dipercaya datang lebih dulu dari pesannya. Pertanyaan untukmu: apa yang membuat A susah dipercaya, padahal argumennya rapi?</div>
+</section>
+
+<section>
+<div class="tag">Langkah 2 · Mesin kepercayaan</div>
+<h2>Dua tuas, tiga puluh warga</h2>
+<p>Tiap warga punya ambang berbeda: ada yang mudah ikut, ada yang sulit. Atur dua tuas dan lihat berapa yang ikut.</p>
+<div class="sl"><label><span>Seberapa dipercaya pembawanya?</span><b id="vp">20</b></label><input type="range" id="sp" min="0" max="100" value="20"></div>
+<div class="sl"><label><span>Seberapa nyata hakim terasa (hakim di atas semua, tak bisa disuap)?</span><b id="vh">20</b></label><input type="range" id="sh" min="0" max="100" value="20"></div>
+<div class="dots" id="dots"></div>
+<div class="big"><span id="cnt">0</span> / 30 ikut</div>
+<p class="verdict" id="vd"></p>
+<p><b>Coba:</b> (1) pembawa 100, hakim 0. (2) pembawa 0, hakim 100. (3) keduanya 80. Apa bedanya?</p>
+</section>
+
+<section>
+<div class="tag">Langkah 3 · Hakim yang mana?</div>
+<h2>Di atas semua, atau sejajar?</h2>
+<p>Bandingkan dua jenis hakim. <span class="small">Angka di bawah hanya ilustrasi untuk berpikir, bukan data.</span></p>
+<div class="row">
+<button class="alt on" id="jA" onclick="jset('j','A')">Hakim di atas semua pihak</button>
+<button class="alt" id="jS" onclick="jset('j','S')">Hakim sejajar (sesama kelompok)</button></div>
+<div class="row">
+<button class="alt on" id="wY" onclick="jset('w','Y')">Ada yang melihat</button>
+<button class="alt" id="wN" onclick="jset('w','N')">Tidak ada yang melihat</button></div>
+<div class="row">
+<button class="alt on" id="gS" onclick="jset('g','S')">Kelompok solid</button>
+<button class="alt" id="gP" onclick="jset('g','P')">Kelompok pecah</button></div>
+<div>Tingkat ketaatan: <b id="jv"></b>%</div>
+<div class="bar"><i id="jb"></i></div>
+<p class="verdict" id="jt"></p>
+<div class="row"><button onclick="show('r3',this)">Apa pelajarannya?</button></div>
+<div class="reveal" id="r3">Hakim di atas semua tetap bekerja <b>meski tak ada yang melihat dan kelompok goyah</b>. Hakim sejajar kuat hanya selama <b>kelompok solid dan ada yang mengawasi</b>. Itu sebabnya ketaatan di era ramai bisa kuat, dan di era sepi bisa luntur. <span class="small">Pikirkan: kenapa hakim yang “selalu hadir” mengubah perilaku saat tak ada yang melihat?</span></div>
+</section>
+
+<section>
+<div class="tag">Langkah 4 · Uji pemahaman</div>
+<h2>Mana yang keliru?</h2>
+<p>Centang pernyataan yang <b>keliru</b>.</p>
+<div class="chk" id="chk">
+<label><input type="checkbox" data-k="1"> “Kalau isinya benar, siapa pun pembawanya pasti didengar.”</label>
+<label><input type="checkbox" data-k="0"> “Pembawa yang dipercaya saja belum cukup, perlu hakim yang terasa nyata.”</label>
+<label><input type="checkbox" data-k="1"> “Hakim yang hanya diketahui sama kuatnya dengan hakim yang dirasakan.”</label>
+<label><input type="checkbox" data-k="0"> “Pengawasan sesama membantu, tapi rapuh jika kelompoknya pecah.”</label></div>
+<button onclick="chk(this)">Periksa</button>
+<div class="reveal" id="rc"></div>
+</section>
+
+<section>
+<div class="tag">Langkah 5 · Tugas akhir</div>
+<h2>Jelaskan dengan kata-katamu sendiri</h2>
+<p>Tulis 3 sampai 4 kalimat: kenapa orang mau mengikuti sebuah aturan baru? Sebut pembawa dan hakim.</p>
+<textarea id="fin" placeholder="Orang menilai pembawanya dulu karena…"></textarea>
+<button onclick="fin(this)">Cek diriku</button>
+<div class="reveal" id="rf"><b>Cek mandiri.</b> Tulisanmu sudah memuat:<div class="chk">
+<label><input type="checkbox"> pembawa dinilai sebelum pesannya</label>
+<label><input type="checkbox"> hakim di atas vs sejajar, dan bedanya saat tak ada yang melihat</label>
+<label><input type="checkbox"> pembawa + hakim saling melengkapi, bukan salah satu saja</label></div>
+<p class="small">Kirim tulisanmu ke Claude untuk dinilai. Potongan 3 menyambung langsung: kalau pembawa dan hakim sudah ada, <b>kenapa orang masih menunda</b>?</p></div>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+function prog(){$('pb').style.width=Math.min(100,document.querySelectorAll('.reveal.show').length/5*100)+'%'}
+function show(id,b){$(id).classList.add('show');b&&(b.style.display='none');prog()}
+function pick(i,b){document.querySelectorAll('section:nth-of-type(1) .alt').forEach(x=>x.classList.remove('on'));b.classList.add('on');show('r0')}
+const d=$('dots');for(let i=0;i<30;i++)d.appendChild(document.createElement('i'));
+function mesin(){const p=+$('sp').value,h=+$('sh').value;$('vp').textContent=p;$('vh').textContent=h;
+const s=.55*p+.45*h;let n=0;[...d.children].forEach((e,i)=>{const on=s>=5+i*3;e.classList.toggle('on',on);if(on)n++});
+$('cnt').textContent=n;
+$('vd').textContent=n>=24?(p>=60&&h>=60?'Banyak yang ikut dan bertahan: kepercayaan dan hakim bekerja bersama.':'Banyak yang ikut, tapi coba lihat tuas yang rendah: itu titik rapuhnya.'):n>=10?(p>h+30?'Orang suka pembawanya, tapi tanpa hakim yang nyata banyak yang tidak bertahan.':(h>p+30?'Orang takut hakim, tapi tak percaya pembawanya: patuh di luar, ragu di dalam.':'Sebagian ikut. Tuas mana yang paling murah dinaikkan?')):'Hampir tidak ada yang bergerak. Aturan sebagus apa pun diam di sini.'}
+['sp','sh'].forEach(i=>$(i).addEventListener('input',mesin));mesin();
+const J={j:'A',w:'Y',g:'S'};
+function jset(k,v){J[k]=v;[['jA','j','A'],['jS','j','S'],['wY','w','Y'],['wN','w','N'],['gS','g','S'],['gP','g','P']].forEach(([id,kk,vv])=>$(id).classList.toggle('on',J[kk]===vv));jhit()}
+function jhit(){let v;if(J.j=='A')v=85-(J.w=='N'?5:0)-(J.g=='P'?5:0);
+else v=J.g=='S'?(J.w=='Y'?85:55):(J.w=='Y'?40:15);
+$('jv').textContent=v;$('jb').style.width=v+'%';
+$('jt').textContent=J.j=='A'?'Hakim di atas semua: hampir tidak terpengaruh siapa yang melihat atau kondisi kelompok.':(v>=80?'Kuat, tapi syaratnya: ada yang mengawasi dan kelompok solid.':'Turun jauh. Kekuatan hakim sejajar bergantung pada kelompok dan pengawasan.')}
+jhit();
+function chk(b){let ok=true;document.querySelectorAll('#chk input').forEach(x=>{if((x.dataset.k=='1')!==x.checked)ok=false});
+$('rc').innerHTML=ok?'✅ Tepat. Pernyataan 1 mengabaikan kepercayaan pada pembawa. Pernyataan 3 keliru: hakim yang hanya diketahui belum tentu terasa dekat. Itu akan jadi inti potongan 3.':'🤔 Coba lagi. Petunjuk: cari klaim yang memakai kata “pasti” dan “sama kuatnya”.';
+$('rc').classList.add('show');prog()}
+function fin(b){if(!$('fin').value.trim()){$('fin').placeholder='Tulis dulu, baru kita cek bareng.';return}show('rf',b)}
+</script></body></html>
