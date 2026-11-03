@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Benih, Petani, Tanah</title>
+<style>
+:root{--bg:#faf6ec;--card:#fff;--tx:#2a2418;--mu:#6e6552;--ac:#2f7d4f;--ac2:#c0782a;--bad:#b5452f;--bd:#e5dcc6;--soil:#a8825a;--dry:#d9c49a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15130e;--card:#201d15;--tx:#efe8d6;--mu:#a69c84;--ac:#5cc283;--ac2:#e0a04e;--bad:#e27a62;--bd:#383324;--soil:#7a5c3c;--dry:#4a4030}}
+:root[data-theme="dark"]{--bg:#15130e;--card:#201d15;--tx:#efe8d6;--mu:#a69c84;--ac:#5cc283;--ac2:#e0a04e;--bad:#e27a62;--bd:#383324;--soil:#7a5c3c;--dry:#4a4030}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.65 Georgia,"Times New Roman",serif}
+main{max-width:720px;margin:0 auto;padding:24px 18px 80px}
+h1{font-size:2rem;line-height:1.2;margin:.2em 0}h2{font-size:1.35rem;margin:0 0 .4em;color:var(--ac)}
+.q{font-style:italic;color:var(--mu)}
+section{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:20px;margin:22px 0}
+.tag{font:600 .75rem system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ac2)}
+button,textarea{font:inherit}
+button{background:var(--ac);color:#fff;border:0;border-radius:10px;padding:10px 16px;cursor:pointer;font-family:system-ui,sans-serif;font-size:.95rem}
+button.alt{background:transparent;color:var(--tx);border:1px solid var(--bd)}
+button.alt.on{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 14%,transparent)}
+textarea{width:100%;min-height:90px;padding:12px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);margin:8px 0}
+.reveal{display:none;margin-top:12px;padding:12px 14px;border-left:4px solid var(--ac2);background:color-mix(in srgb,var(--ac2) 10%,transparent);border-radius:6px}
+.reveal.show{display:block}
+svg{width:100%;height:auto;display:block}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.sl{margin:12px 0;font-family:system-ui,sans-serif;font-size:.92rem}
+.sl label{display:flex;justify-content:space-between}
+input[type=range]{width:100%;accent-color:var(--ac)}
+.verdict{font-weight:600;min-height:3.2em}
+.grid{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.chk label{display:block;margin:6px 0;cursor:pointer}
+.small{font-size:.9rem;color:var(--mu)}
+.prog{height:6px;background:var(--bd);border-radius:6px;overflow:hidden;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.prog i{display:block;height:100%;width:0;background:var(--ac);transition:width .4s}
+</style></head><body>
+<div class="prog"><i id="pb"></i></div>
+<main>
+<div class="tag">Belajar sambil berpikir</div>
+<h1>Benih, Petani, dan Tanah</h1>
+<p class="q">Islam benar-benar alasan lahirnya manusia hebat, atau cuma kebetulan mereka beragama Islam? Jangan buru-buru jawab. Kita temukan sendiri, pelan-pelan.</p>
+
+<section data-step>
+<div class="tag">Langkah 1 · Tebak dulu</div>
+<h2>Dua petani, tanah sama-sama gersang</h2>
+<p>Petani A dapat benih unggul dan cara pandang baru: <em>“tanah ini amanah, hasilnya kelak dimintai pertanggungjawaban.”</em> Petani B hanya diberi tahu: <em>“tanahmu punya nama bagus.”</em></p>
+<svg viewBox="0 0 600 170" role="img" aria-label="Dua ladang gersang">
+<rect x="10" y="100" width="280" height="60" rx="8" fill="var(--dry)"/><rect x="310" y="100" width="280" height="60" rx="8" fill="var(--dry)"/>
+<text x="150" y="30" text-anchor="middle" fill="currentColor" font-size="20">🧑‍🌾 Petani A</text><text x="450" y="30" text-anchor="middle" fill="currentColor" font-size="20">🧑‍🌾 Petani B</text>
+<text x="150" y="62" text-anchor="middle" fill="currentColor" font-size="14">🌰 benih + cara pandang</text><text x="450" y="62" text-anchor="middle" fill="currentColor" font-size="14">🏷️ cuma nama bagus</text>
+<text x="150" y="135" text-anchor="middle" fill="currentColor" font-size="13">tanah gersang</text><text x="450" y="135" text-anchor="middle" fill="currentColor" font-size="13">tanah gersang</text></svg>
+<p><b>Pertanyaan:</b> setahun kemudian, apa yang terjadi pada tanah masing-masing? Apa alasanmu?</p>
+<textarea id="t1" placeholder="Tulis tebakanmu di sini…"></textarea>
+<button onclick="show('r1',this);grow()">Lihat kelanjutannya</button>
+<div class="reveal" id="r1">
+<svg viewBox="0 0 600 150" role="img" aria-label="Ladang A hijau, B gersang">
+<rect x="10" y="100" width="280" height="40" rx="8" fill="var(--soil)"/><rect x="310" y="100" width="280" height="40" rx="8" fill="var(--dry)"/>
+<g id="plantsA" font-size="26"></g>
+<text x="450" y="80" text-anchor="middle" font-size="22">🏜️</text></svg>
+<p>Tanah A hijau, B tetap gersang. Tapi hati-hati, orang luar bisa salah paham dengan <b>dua cara</b>. Lanjut ke langkah berikutnya.</p></div>
+</section>
+
+<section data-step>
+<div class="tag">Langkah 2 · Dua salah paham</div>
+<h2>Mana yang keliru?</h2>
+<p>Dua orang melihat ladang A yang hijau dan berkomentar. Ketuk komentar untuk melihat apa yang kurang.</p>
+<div class="row">
+<button class="alt" onclick="mis(0,this)">“Benih itu sihir. Siapa pun yang memegangnya pasti subur.”</button>
+<button class="alt" onclick="mis(1,this)">“Petani A memang jago. Benihnya tidak berpengaruh.”</button></div>
+<div class="reveal" id="m0"><b>Salah paham 1.</b> Benih tidak bekerja sendiri. Petani A mencangkul, menyiram, dan sabar. Kalau benih = sihir, petani B juga sudah hijau.<br><span class="small">Pikirkan: adakah orang yang mengaku Islam tapi hasilnya nol? Kenapa?</span></div>
+<div class="reveal" id="m1"><b>Salah paham 2.</b> Tanpa benih dan cara pandang itu, petani A tidak akan menggarap tanahnya sedemikian rupa. Pandangan hidup menentukan <i>apa yang dianggap layak diperjuangkan</i>.<br><span class="small">Pikirkan: pedagang, penggembala, dan prajurit suku yang saling berperang. Apa yang berubah pada mereka setelah wahyu?</span></div>
+</section>
+
+<section data-step>
+<div class="tag">Langkah 3 · Eksperimen</div>
+<h2>Atur sendiri tiga bahan tumbuh</h2>
+<p>Geser slider. Tugasmu: temukan <b>kombinasi yang membuat ladang gagal</b> padahal salah satu bahan masih penuh.</p>
+<svg viewBox="0 0 600 190" role="img" aria-label="Ladang simulasi"><rect x="10" y="140" width="580" height="40" rx="8" id="soilRect" fill="var(--soil)"/><g id="sim" font-size="30" text-anchor="middle"></g></svg>
+<div class="sl"><label><span>🌰 Benih (nilai & cara pandang)</span><b id="vb">90</b></label><input type="range" id="sb" min="0" max="100" value="90"></div>
+<div class="sl"><label><span>🧑‍🌾 Petani (mengamalkan & mau belajar)</span><b id="vp">90</b></label><input type="range" id="sp" min="0" max="100" value="90"></div>
+<div class="sl"><label><span>🌍 Tanah (kota, perdagangan, penguasa pendukung, warisan ilmu)</span><b id="vt">90</b></label><input type="range" id="st" min="0" max="100" value="90"></div>
+<p class="verdict" id="vd"></p>
+<p><b>Renungkan:</b> kenapa hasilnya lebih mirip <i>perkalian</i> daripada penjumlahan? Apa arti angka nol pada salah satunya?</p>
+</section>
+
+<section data-step>
+<div class="tag">Langkah 4 · Diagnosis</div>
+<h2>Benihnya sama, tapi tidak tumbuh. Kenapa?</h2>
+<p>Tiga kisah singkat. Tebak dulu bagian mana yang putus, baru ketuk untuk cek.</p>
+<div id="cases"></div>
+</section>
+
+<section data-step>
+<div class="tag">Langkah 5 · Batas kerangka</div>
+<h2>Kapan kerangka ini tidak boleh dipakai?</h2>
+<p>Centang pernyataan yang <b>keliru</b> menurutmu, lalu periksa.</p>
+<div class="chk" id="chk">
+<label><input type="checkbox" data-k="1"> “Cukup beragama Islam, hasil pasti datang.”</label>
+<label><input type="checkbox" data-k="0"> “Benih perlu, tapi belum cukup bila berdiri sendiri.”</label>
+<label><input type="checkbox" data-k="1"> “Semua penemu masa kejayaan pasti muslim.”</label>
+<label><input type="checkbox" data-k="0"> “Nilai berubah jadi hasil nyata lewat orang yang mengamalkan dan kondisi yang menopang.”</label></div>
+<button onclick="chk(this)">Periksa</button>
+<div class="reveal" id="rc"></div>
+</section>
+
+<section data-step>
+<div class="tag">Langkah 6 · Tugas akhir</div>
+<h2>Jelaskan dengan kata-katamu sendiri</h2>
+<p>Tulis 3 sampai 4 kalimat: kenapa Islam disebut <b>alasan</b> lahirnya manusia hebat, tapi <b>bukan satu-satunya</b> alasan?</p>
+<textarea id="fin" placeholder="Pakai analogi benih, petani, dan tanah…"></textarea>
+<button onclick="fin(this)">Cek diriku</button>
+<div class="reveal" id="rf"><b>Cek mandiri.</b> Tulisanmu sudah memuat:<div class="chk" id="self">
+<label><input type="checkbox"> benih = nilai/cara pandang yang mengubah arah hidup</label>
+<label><input type="checkbox"> petani = manusia yang benar-benar mengamalkan</label>
+<label><input type="checkbox"> tanah = kondisi pendukung (kota, dana, warisan ilmu)</label>
+<label><input type="checkbox"> alasan “necessary tapi tidak sufficient”</label></div>
+<p class="small">Salin tulisanmu, lalu kirim ke Claude di chat untuk dikritik mana yang tepat dan mana yang keliru.</p></div>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+function show(id,b){$(id).classList.add('show');b&&(b.style.display='none');prog()}
+function prog(){const s=document.querySelectorAll('[data-step]').length,d=document.querySelectorAll('.reveal.show').length;$('pb').style.width=Math.min(100,d/9*100)+'%'}
+function grow(){let h='';for(let i=0;i<7;i++){const x=30+i*40;h+=`<text x="${x}" y="100" text-anchor="middle">🌱</text>`}$('plantsA').innerHTML=h;
+setTimeout(()=>{$('plantsA').innerHTML=[...Array(7)].map((_,i)=>`<text x="${30+i*40}" y="100" text-anchor="middle">🌾</text>`).join('')},1200)}
+function mis(i,b){document.querySelectorAll('#m0,#m1').forEach((e,j)=>e.classList.toggle('show',j==i||e.classList.contains('show')));b.classList.add('on');prog()}
+function sim(){const b=+$('sb').value,p=+$('sp').value,t=+$('st').value;$('vb').textContent=b;$('vp').textContent=p;$('vt').textContent=t;
+const g=b*p*t/1e6;let h='';for(let i=0;i<10;i++){const e=g>.7?'🌳':g>.4?'🌿':g>.15?'🌱':g>.03?'·':'🥀';h+=`<text x="${35+i*58}" y="135">${e}</text>`}
+$('sim').innerHTML=h;
+const m=Math.min(b,p,t);let v;
+if(g>.7)v='Subur. Ketiganya bertemu.';
+else{const w=m==b?'benih (nilai)':m==p?'petani (pengamalan)':'tanah (kondisi)';v=m>=60?'Lumayan, tapi belum maksimal.':'Hasil lemah. Titik terlemah: '+w+'. Bahan lain yang penuh tidak bisa menutupinya.'}
+$('vd').textContent=v}
+['sb','sp','st'].forEach(i=>$(i).addEventListener('input',sim));sim();
+const C=[
+["Umat punya Al-Qur’an dan sering membanggakan masa lalu, tapi jarang membaca, meneliti, atau mencoba. Bagian mana yang putus?","Petani. Benihnya ada, tapi tidak digarap. Mengakui tanpa mengamalkan = petani B."],
+["Ada ulama dan semangat belajar, tapi negeri terpecah perang, perpustakaan terbakar, penguasa tidak membiayai ilmu. Bagian mana yang putus?","Tanah. Petani dan benih ada, tapi kondisi penopang rusak oleh perpecahan."],
+["Sebuah komunitas ramai dengan simbol dan slogan agama, namun nilainya (jujur, tanggung jawab, ilmu) tak dipahami. Bagian mana yang putus?","Benih. Nilainya hilang maknanya, tersisa kulit. Slogan bukan cara pandang yang hidup."]];
+$('cases').innerHTML=C.map((c,i)=>`<div style="margin:12px 0"><p><b>Kisah ${i+1}.</b> ${c[0]}</p><div class="row">${['Benih','Petani','Tanah'].map(n=>`<button class="alt" onclick="cs(${i},this,'${n}')">${n}</button>`).join('')}</div><div class="reveal" id="c${i}"></div></div>`).join('');
+const ans=['Petani','Tanah','Benih'];
+function cs(i,b,n){const r=$('c'+i);r.innerHTML=(n==ans[i]?'✅ Tepat. ':'🤔 Belum pas. ')+C[i][1];r.classList.add('show');prog()}
+function chk(b){const bs=document.querySelectorAll('#chk input');let ok=true;bs.forEach(x=>{if((x.dataset.k=='1')!==x.checked)ok=false});
+$('rc').innerHTML=ok?'✅ Tepat. Dua pernyataan pertama dan ketiga yang keliru: “cukup beragama” adalah kesalahan petani B, dan “semua penemu muslim” terlalu luas karena banyak penerjemah dan ilmuwan masa itu juga Kristen, Yahudi, dan lainnya.':'🤔 Coba lagi. Petunjuk: cari klaim yang memakai kata “cukup” dan “semua”. Kata mutlak biasanya jebakan.';$('rc').classList.add('show');prog()}
+function fin(b){if(!$('fin').value.trim()){$('fin').placeholder='Tulis dulu, baru kita cek bareng.';return}show('rf',b)}
+</script></body></html>

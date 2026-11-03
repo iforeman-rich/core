@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Perantau, Kebaikan, dan Kenal</title>
+<style>
+:root{--bg:#faf6ec;--card:#fff;--tx:#2a2418;--mu:#6e6552;--ac:#2f7d4f;--ac2:#c0782a;--hr:#c4473a;--bd:#e5dcc6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15130e;--card:#201d15;--tx:#efe8d6;--mu:#a69c84;--ac:#5cc283;--ac2:#e0a04e;--hr:#ee7a6c;--bd:#383324}}
+:root[data-theme="dark"]{--bg:#15130e;--card:#201d15;--tx:#efe8d6;--mu:#a69c84;--ac:#5cc283;--ac2:#e0a04e;--hr:#ee7a6c;--bd:#383324}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.65 Georgia,"Times New Roman",serif}
+main{max-width:720px;margin:0 auto;padding:24px 18px 80px}
+h1{font-size:2rem;line-height:1.2;margin:.2em 0}h2{font-size:1.35rem;margin:0 0 .4em;color:var(--ac)}
+.q{font-style:italic;color:var(--mu)}
+section{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:20px;margin:22px 0}
+.tag{font:600 .75rem system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ac2)}
+button,textarea{font:inherit}
+button{background:var(--ac);color:#fff;border:0;border-radius:10px;padding:10px 16px;cursor:pointer;font-family:system-ui,sans-serif;font-size:.95rem}
+button.alt{background:transparent;color:var(--tx);border:1px solid var(--bd)}
+button.alt.on{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 14%,transparent)}
+textarea{width:100%;min-height:90px;padding:12px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);margin:8px 0}
+.reveal{display:none;margin-top:12px;padding:12px 14px;border-left:4px solid var(--ac2);background:color-mix(in srgb,var(--ac2) 10%,transparent);border-radius:6px}
+.reveal.show{display:block}
+.hint{margin-top:10px;padding:10px 14px;border-radius:8px;background:color-mix(in srgb,var(--ac) 10%,transparent);font-size:.96rem}
+svg{width:100%;height:auto;display:block}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.sl{margin:12px 0;font-family:system-ui,sans-serif;font-size:.92rem}
+.sl label{display:flex;justify-content:space-between}
+input[type=range]{width:100%;accent-color:var(--ac)}
+.verdict{font-weight:600;min-height:3.2em}
+.chk label{display:block;margin:6px 0;cursor:pointer}
+.small{font-size:.9rem;color:var(--mu)}
+.prog{height:6px;background:var(--bd);border-radius:6px;overflow:hidden;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.prog i{display:block;height:100%;width:0;background:var(--ac);transition:width .4s}
+</style></head><body>
+<div class="prog"><i id="pb"></i></div>
+<main>
+<div class="tag">Belajar sambil berpikir</div>
+<h1>Perantau, Kebaikan, dan Kenal</h1>
+<p class="q">Bagaimana jadi pencinta Rabbul Alamin? Jangan buru-buru jawab. Kita temukan sendiri dari kisah seorang perantau yang pulang.</p>
+
+<section>
+<div class="tag">Langkah 1 · Tebak dulu</div>
+<h2>Dua perantau, sepuluh tahun, satu pintu</h2>
+<p>Dua perantau sama-sama pulang setelah sepuluh tahun. <b>Hasan</b> sejak kecil disuapi, dijaga saat sakit, didoakan diam-diam oleh ibunya, dan ia tahu persis sabar serta pengorbanan ibunya. <b>Rendi</b> pernah dengar bahwa dia punya ibu, tapi hampir tidak mengenalnya. Keduanya membawa oleh-oleh mahal.</p>
+<svg viewBox="0 0 600 150" role="img" aria-label="Dua perantau di depan pintu rumah ibu">
+<text x="150" y="30" text-anchor="middle" fill="currentColor" font-size="18">🧳 Hasan</text><text x="450" y="30" text-anchor="middle" fill="currentColor" font-size="18">🧳 Rendi</text>
+<text x="150" y="95" text-anchor="middle" font-size="44">🏠</text><text x="450" y="95" text-anchor="middle" font-size="44">🏠</text>
+<text x="150" y="130" text-anchor="middle" fill="currentColor" font-size="13">pintu ibu</text><text x="450" y="130" text-anchor="middle" fill="currentColor" font-size="13">pintu ibu</text></svg>
+<p><b>Pertanyaan:</b> pintu terbuka. Siapa yang lupa pada oleh-olehnya dan hanya ingin melihat wajah ibu? Apa alasanmu?</p>
+<textarea id="t1" placeholder="Tulis tebakanmu di sini…"></textarea>
+<button onclick="show('r1',this)">Lihat kelanjutannya</button>
+<div class="reveal" id="r1">
+<svg viewBox="0 0 600 110" role="img" aria-label="Hasan berkaca-kaca, Rendi sibuk dengan oleh-oleh">
+<text x="150" y="60" text-anchor="middle" font-size="40">🥹</text><text x="450" y="60" text-anchor="middle" font-size="40">🎁</text>
+<text x="150" y="95" text-anchor="middle" fill="currentColor" font-size="13">hanya ingin melihat wajah</text><text x="450" y="95" text-anchor="middle" fill="currentColor" font-size="13">sibuk dengan oleh-oleh</text></svg>
+<p>Hasan. Jaraknya sama, lamanya sama. Yang beda bukan jarak. Pertanyaannya: apa yang Hasan punya, dan Rendi tidak?</p></div>
+</section>
+
+<section>
+<div class="tag">Langkah 2 · Dua salah paham</div>
+<h2>Mana yang keliru?</h2>
+<p>Dua orang menonton Hasan dan berkomentar. Ketuk komentar untuk melihat apa yang kurang.</p>
+<div class="row">
+<button class="alt" onclick="mis(0,this)">“Hasan rindu karena sudah lama jauh. Jarak yang melahirkan cintanya.”</button>
+<button class="alt" onclick="mis(1,this)">“Orang yang menerima banyak kebaikan pasti jadi pencinta.”</button></div>
+<div class="reveal" id="m0"><b>Salah paham 1.</b> Jarak tidak menciptakan cinta, hanya membuatnya terasa. Kalau jarak yang melahirkan cinta, Rendi juga akan berkaca-kaca.<br><span class="small">Pikirkan: kalau cintanya nol, apa yang tersisa dari jarak sepuluh tahun?</span></div>
+<div class="reveal" id="m1"><b>Salah paham 2.</b> Menerima belum tentu menyadari. Orang bisa dikelilingi nikmat dan menganggapnya hak atau kebetulan, lalu cinta tidak tumbuh.<br><span class="small">Pikirkan: nikmat apa yang kemarin kamu terima tanpa sempat menoleh pada pemberinya?</span></div>
+</section>
+
+<section>
+<div class="tag">Langkah 3 · Eksperimen</div>
+<h2>Atur sendiri bahan tumbuhnya cinta</h2>
+<p>Geser slider. Tugasmu: temukan kombinasi di mana <b>nikmat sangat banyak</b> tapi cinta tetap kecil, lalu temukan kombinasi di mana <b>jarak sangat jauh</b> tapi rindu tetap kecil.</p>
+<svg viewBox="0 0 600 150" role="img" aria-label="Ukuran hati dan meter rindu">
+<text id="heart" x="150" y="95" text-anchor="middle" font-size="40">❤️</text>
+<text x="150" y="135" text-anchor="middle" fill="currentColor" font-size="13">cinta</text>
+<rect x="300" y="40" width="270" height="16" rx="8" fill="var(--bd)"/><rect id="rbar" x="300" y="40" width="0" height="16" rx="8" fill="var(--hr)"/>
+<text x="435" y="85" text-anchor="middle" fill="currentColor" font-size="13">rasa rindu yang terasa</text></svg>
+<div class="sl"><label><span>🎁 Banyaknya nikmat yang diterima</span><b id="v1">90</b></label><input type="range" id="s1" min="0" max="100" value="90"></div>
+<div class="sl"><label><span>👀 Nikmat diperhatikan dan dikenali pemberinya</span><b id="v2">90</b></label><input type="range" id="s2" min="0" max="100" value="90"></div>
+<div class="sl"><label><span>📖 Kenal lewat nama, sifat, dan ciptaan-Nya (dirasakan, bukan hafalan)</span><b id="v3">90</b></label><input type="range" id="s3" min="0" max="100" value="90"></div>
+<div class="sl"><label><span>🧭 Jauhnya jarak dari yang dicintai</span><b id="v4">90</b></label><input type="range" id="s4" min="0" max="100" value="90"></div>
+<p class="verdict" id="vd"></p>
+<p><b>Renungkan:</b> kenapa jarak hanya mengalikan rindu dan tidak menambah cinta? Apa arti angka nol pada salah satu bahan?</p>
+</section>
+
+<section>
+<div class="tag">Langkah 4 · Diagnosis</div>
+<h2>Banyak nikmat, tapi cinta tak tumbuh. Kenapa?</h2>
+<p>Tiga kisah singkat. Tebak dulu bagian mana yang putus, baru ketuk untuk cek.</p>
+<div id="cases"></div>
+</section>
+
+<section>
+<div class="tag">Langkah 5 · Batas kerangka</div>
+<h2>Kapan pola ini tidak berlaku?</h2>
+<p>Centang pernyataan yang <b>keliru</b> menurutmu, lalu periksa.</p>
+<div class="chk" id="chk">
+<label><input type="checkbox" data-k="1"> “Semakin lama jauh dari Allah, otomatis cinta kepada-Nya makin besar.”</label>
+<label><input type="checkbox" data-k="0"> “Cinta tumbuh dari kebaikan yang benar-benar diperhatikan dan dikenali pemberinya.”</label>
+<label><input type="checkbox" data-k="1"> “Hafal banyak nama dan sifat Allah sudah cukup untuk mencintai-Nya.”</label>
+<label><input type="checkbox" data-k="0"> “Cinta perlu terus diingat supaya kesannya tidak pudar.”</label></div>
+<button onclick="chk()">Periksa</button>
+<div class="reveal" id="rc"></div>
+</section>
+
+<section>
+<div class="tag">Langkah 6 · Tugas akhir</div>
+<h2>Jelaskan dengan kata-katamu sendiri</h2>
+<p>Tulis 2 sampai 3 kalimat: apa dua hal yang menumbuhkan cinta, dan kenapa rindu bukan penyebabnya?</p>
+<textarea id="fin" placeholder="Pakai kisah Hasan dan Rendi kalau perlu…"></textarea>
+<button onclick="fin(this)">Cek diriku</button>
+<div class="reveal" id="rf"><b>Cek mandiri.</b> Tulisanmu sudah memuat:<div class="chk">
+<label><input type="checkbox"> kebaikan yang dirasakan (hati condong mencintai yang berbuat baik padanya)</label>
+<label><input type="checkbox"> kenal (kita tidak bisa mencintai yang tidak kita kenal)</label>
+<label><input type="checkbox"> rindu adalah akibat, jarak hanya membuatnya terasa</label>
+<label><input type="checkbox"> perlu terus mengingat supaya kesan tidak pudar</label></div>
+<p class="small">Salin tulisanmu, lalu kirim ke Claude di chat untuk dikritik mana yang tepat dan mana yang keliru.</p></div>
+<p style="margin-top:22px"><b>Satu renungan untuk malam ini:</b> sebutkan satu kebaikan Allah yang selama ini kamu anggap biasa. Kalau diambil, apa yang akan kamu rasakan?</p>
+<textarea id="ref" placeholder="Satu nikmat, satu kalimat…"></textarea>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+function show(id,b){$(id).classList.add('show');b&&(b.style.display='none');prog()}
+function prog(){$('pb').style.width=Math.min(100,document.querySelectorAll('.reveal.show').length/10*100)+'%'}
+function mis(i,b){$('m'+i).classList.add('show');b.classList.add('on');prog()}
+function sim(){
+ const a=+$('s1').value,n=+$('s2').value,k=+$('s3').value,j=+$('s4').value;
+ ['1','2','3','4'].forEach(i=>$('v'+i).textContent=$('s'+i).value);
+ const love=(a/100)*(n/100)*(k/100),rin=love*(j/100);
+ $('heart').setAttribute('font-size',Math.round(24+love*76));
+ $('rbar').setAttribute('width',Math.round(rin*270));
+ let v;
+ if(love>.55)v=rin>.4?'Cinta kuat dan jarak membuat rindunya terasa dalam.':'Cinta kuat. Dekat atau jauh, hatinya tetap terisi.';
+ else if(a>=70&&love<.3)v='Nikmat banyak, tapi cinta kecil. Titik lemah: '+(n<=k?'nikmat tidak diperhatikan dan dikenali pemberinya.':'kenalnya belum sampai terasa.');
+ else if(j>=70&&rin<.2)v='Jarak jauh, tapi rindu kecil. Tidak ada cinta yang bisa dibuat terasa oleh jarak.';
+ else v='Cinta sedang. Cari bahan yang paling rendah, di situ yang menahan.';
+ $('vd').textContent=v}
+['s1','s2','s3','s4'].forEach(i=>$(i).addEventListener('input',sim));sim();
+const C=[
+["Budi menerima rezeki, sehat, dan keluarga utuh. Ia menganggap semuanya hasil kerjanya sendiri. Bagian mana yang putus?","Diperhatikan. Kebaikan ada tapi dianggap hak atau kebetulan, jadi tidak dikenali pemberinya."],
+["Andi hafal banyak nama dan sifat Allah, tapi tak pernah merasakannya dalam hidupnya. Bagian mana yang putus?","Kenal. Kenalnya cuma akrab di permukaan sebagai informasi, tanpa pernah dirasakan."],
+["Sari dulu sering terharu pada kebaikan Allah dan mengenal-Nya, tapi bertahun-tahun ia lalai dan tak pernah menyebut-Nya. Kesan itu memudar. Bagian mana yang putus?","Diingat. Cinta perlu terus diingat supaya kesannya tidak pudar."]];
+const L=['Diperhatikan','Kenal','Diingat'];
+$('cases').innerHTML=C.map((c,i)=>`<div style="margin:12px 0"><p><b>Kisah ${i+1}.</b> ${c[0]}</p><div class="row">${L.map(n=>`<button class="alt" onclick="cs(${i},'${n}')">${n}</button>`).join('')}</div><div class="reveal" id="c${i}"></div></div>`).join('');
+function cs(i,n){const r=$('c'+i);r.innerHTML=(n==L[i]?'✅ Tepat. ':'🤔 Belum pas. ')+C[i][1];r.classList.add('show');prog()}
+function chk(){let ok=true;document.querySelectorAll('#chk input').forEach(x=>{if((x.dataset.k=='1')!==x.checked)ok=false});
+ $('rc').innerHTML=ok?'✅ Tepat. Pernyataan pertama dan ketiga yang keliru: jarak tidak melahirkan cinta, hanya membuatnya terasa, dan hafalan tanpa dirasakan hanya akrab di permukaan.':'🤔 Coba lagi. Petunjuk: cari pernyataan yang melompat, “otomatis” dan “sudah cukup”.';
+ $('rc').classList.add('show');prog()}
+function fin(b){if(!$('fin').value.trim()){$('fin').placeholder='Tulis dulu, baru kita cek bareng.';return}show('rf',b)}
+</script></body></html>
