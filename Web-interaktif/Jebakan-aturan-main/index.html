@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jebakan Aturan Main</title>
+<style>
+:root{--bg:#f6f3ec;--card:#fff;--tx:#1d1b17;--mu:#6b665a;--bd:#e0dacb;--teal:#1f8a82;--orange:#c2691d;--blue:#2d6cb5;--purple:#7a52b3;--bad:#b5452f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0a0a;--card:#141414;--tx:#ece9e2;--mu:#9a968b;--bd:#2a2a2a;--teal:#4fc3b8;--orange:#e39a52;--blue:#6ea4e0;--purple:#a98be0;--bad:#e27a62}}
+:root[data-theme="dark"]{--bg:#0a0a0a;--card:#141414;--tx:#ece9e2;--mu:#9a968b;--bd:#2a2a2a;--teal:#4fc3b8;--orange:#e39a52;--blue:#6ea4e0;--purple:#a98be0;--bad:#e27a62}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:720px;margin:0 auto;padding:22px 16px 80px}
+h1{font-size:1.9rem;line-height:1.2;margin:.2em 0}h2{font-size:1.2rem;margin:.1em 0 .5em}
+.tag{font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--mu)}
+.q{color:var(--mu)}
+section{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--teal);border-radius:12px;padding:18px;margin:20px 0}
+section:nth-of-type(2){border-left-color:var(--orange)}section:nth-of-type(3){border-left-color:var(--blue)}section:nth-of-type(4){border-left-color:var(--purple)}section:nth-of-type(5){border-left-color:var(--teal)}section:nth-of-type(6){border-left-color:var(--orange)}
+button,textarea{font:inherit}
+button{background:var(--teal);color:#06110f;border:0;border-radius:9px;padding:10px 15px;cursor:pointer;font-weight:600}
+button.alt{background:transparent;color:var(--tx);border:1px solid var(--bd);font-weight:500;text-align:left}
+button.alt.on{border-color:var(--teal)}
+button:disabled{opacity:.4;cursor:default}
+textarea{width:100%;min-height:90px;padding:12px;border-radius:9px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);margin:8px 0}
+.reveal{display:none;margin-top:12px;padding:12px 14px;border-left:3px solid var(--orange);background:color-mix(in srgb,var(--orange) 10%,transparent);border-radius:6px}
+.reveal.show{display:block}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.grid{display:grid;gap:12px;grid-template-columns:1fr 1fr}@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.box{border:1px solid var(--bd);border-radius:10px;padding:12px}
+.box h3{margin:0 0 6px;font-size:1rem}
+.score{font-size:1.6rem;font-weight:700}
+.log{font-size:.85rem;color:var(--mu);min-height:5.2em;margin:6px 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin:10px 0}td,th{border:1px solid var(--bd);padding:8px;text-align:center}
+.sl{margin:12px 0;font-size:.92rem}.sl label{display:flex;justify-content:space-between}input[type=range]{width:100%;accent-color:var(--teal)}
+.verdict{font-weight:600;min-height:3.4em}
+.small{font-size:.88rem;color:var(--mu)}
+.chk label{display:block;margin:6px 0;cursor:pointer}
+.prog{height:5px;background:var(--bd);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.prog i{display:block;height:100%;width:0;background:var(--teal);transition:width .4s}
+</style></head><body>
+<div class="prog"><i id="pb"></i></div>
+<main>
+<div class="tag">Potongan 1 dari 5 · Belajar sambil berpikir</div>
+<h1>Jebakan Aturan Main</h1>
+<p class="q">Kenapa orang keras bisa berubah? Jangan buru-buru jawab “karena dinasihati”. Kita coba rasakan sendiri jebakannya.</p>
+
+<section>
+<div class="tag">Langkah 1 · Tebak dulu</div>
+<h2>Dua suku yang sama-sama lelah berperang</h2>
+<p>Suku Hilal dan suku Qamar sudah puluhan tahun saling serang. Anak-anak yatim di kedua sisi. Kepala kedua suku <b>diam-diam sama-sama ingin berhenti</b>.</p>
+<p><b>Tebakan:</b> kalau semua ingin berhenti, kenapa perang tetap jalan? Tulis alasanmu.</p>
+<textarea id="t1" placeholder="Tulis tebakanmu…"></textarea>
+<button onclick="show('r1',this)">Lihat petunjuk</button>
+<div class="reveal" id="r1">Karena yang berhenti <b>duluan</b> menanggung risiko: diserang saat tidak siap. Jadi masing-masing berpikir, “aku berhenti kalau dia berhenti.” Dua-duanya menunggu, dua-duanya menyerang. Ini bukan soal watak jahat. Ini soal <b>aturan main</b>. Coba kita rasakan di langkah berikutnya.</div>
+</section>
+
+<section>
+<div class="tag">Langkah 2 · Main sendiri</div>
+<h2>Kamu jadi kepala suku Hilal. 5 ronde.</h2>
+<p>Poin setiap ronde: kedua berhenti = <b>+2</b> masing-masing. Kamu berhenti tapi lawan menyerang = <b>−3</b>. Kedua menyerang = <b>−2</b>. Kamu menyerang lawan yang berhenti = <b>+1</b>. Mainkan <b>kedua dunia</b>.</p>
+<div class="grid">
+<div class="box"><h3>Dunia lama</h3><div class="small">Tidak ada hakim. Suku Qamar terbiasa menyerang duluan.</div>
+<div class="score" id="sa">0</div><div class="log" id="la"></div>
+<div class="row"><button class="alt" id="aS" onclick="play('a','Serang')">Serang</button><button class="alt" id="aB" onclick="play('a','Berhenti')">Berhenti</button></div></div>
+<div class="box"><h3>Dunia aturan baru</h3><div class="small">Ada hakim di atas semua suku. Yang menyerang kena denda berat (−4 tambahan).</div>
+<div class="score" id="sb">0</div><div class="log" id="lb"></div>
+<div class="row"><button class="alt" id="bS" onclick="play('b','Serang')">Serang</button><button class="alt" id="bB" onclick="play('b','Berhenti')">Berhenti</button></div></div>
+</div>
+<div class="reveal" id="r2"><b>Perhatikan:</b> di dunia lama, “Berhenti” selalu kalah dari “Serang”, padahal kalau dua-duanya berhenti hasilnya paling bagus. Di dunia baru, pilihan terbaiknya berubah. <b>Orangnya sama, hasilnya beda. Yang berubah hanya aturan main.</b><br><span class="small">Pikirkan: apa yang membuat lawanmu di dunia baru berani berhenti?</span></div>
+</section>
+
+<section>
+<div class="tag">Langkah 3 · Eksperimen</div>
+<h2>Kapan berhenti jadi pilihan yang masuk akal?</h2>
+<p>Geser dua slider. Cari titik di mana <b>berhenti</b> mengalahkan <b>menyerang</b>.</p>
+<div class="sl"><label><span>Seberapa yakin lawan akan berhenti juga?</span><b id="vp">20</b></label><input type="range" id="sp" min="0" max="100" value="20"></div>
+<div class="sl"><label><span>Seberapa kuat hakim menghukum yang menyerang?</span><b id="vh">0</b></label><input type="range" id="sh" min="0" max="100" value="0"></div>
+<table><tr><th></th><th>Hasil rata-rata</th></tr><tr><td>Berhenti</td><td id="ev1"></td></tr><tr><td>Menyerang</td><td id="ev2"></td></tr></table>
+<p class="verdict" id="vd"></p>
+<p><b>Renungkan:</b> hakim kuat bisa menolong dua jalan: menaikkan keyakinan pada lawan, dan menurunkan untung menyerang. Mana yang lebih penting menurutmu?</p>
+</section>
+
+<section>
+<div class="tag">Langkah 4 · Bandingkan pembaharu</div>
+<h2>Tiga orang mencoba menghentikan perang</h2>
+<p>Ketuk masing-masing untuk melihat kira-kira apa yang terjadi.</p>
+<div class="row" style="flex-direction:column">
+<button class="alt" onclick="ref(0,this)"><b>A.</b> Berkhotbah: “Perang itu buruk, hentikan.” Tanpa mengubah apa pun.</button>
+<button class="alt" onclick="ref(1,this)"><b>B.</b> Memaksa dengan ancaman, tapi ia sendiri tidak dipercaya kedua suku.</button>
+<button class="alt" onclick="ref(2,this)"><b>C.</b> Orang yang sudah dipercaya, membawa pandangan hidup baru: kehormatan = menahan diri. Ada hakim di atas semua, dan balas dendam dihapus untuk semua pihak.</button></div>
+<div class="reveal" id="f0"><b>A.</b> Nasihat tidak mengubah hitungan untung-rugi. Yang berhenti duluan tetap rugi. Tidak bertahan.</div>
+<div class="reveal" id="f1"><b>B.</b> Ada efek sesaat, tapi tanpa kepercayaan orang mencari celah dan menunggu pemaksanya lemah.</div>
+<div class="reveal" id="f2"><b>C.</b> Jebakannya terurai: yang berhenti tidak lagi sendirian dan hakimnya diakui semua. Inilah gambaran bagaimana Islam bekerja pada bangsa yang keras: <b>yang diganti aturan main, bukan sekadar disuruh jadi baik</b>.</div>
+</section>
+
+<section>
+<div class="tag">Langkah 5 · Batas kerangka</div>
+<h2>Mana yang keliru?</h2>
+<p>Centang pernyataan yang <b>keliru</b>, lalu periksa.</p>
+<div class="chk" id="chk">
+<label><input type="checkbox" data-k="1"> “Bangsa Arab sebelum Islam sama sekali tidak punya nilai baik.”</label>
+<label><input type="checkbox" data-k="0"> “Nilai yang sudah ada (berani, ramah, setia) bisa diarahkan ulang.”</label>
+<label><input type="checkbox" data-k="1"> “Kalau aturan main berubah, semua orang otomatis menjalankannya.”</label>
+<label><input type="checkbox" data-k="0"> “Sejarah juga dibentuk politik dan ekonomi, jadi satu faktor tidak menjelaskan semuanya.”</label></div>
+<button onclick="chk(this)">Periksa</button>
+<div class="reveal" id="rc"></div>
+</section>
+
+<section>
+<div class="tag">Langkah 6 · Tugas akhir</div>
+<h2>Jelaskan dengan kata-katamu sendiri</h2>
+<p>Tulis 3 sampai 4 kalimat: kenapa orang keras bisa berubah <b>tanpa</b> hanya dinasihati? Pakai dua suku sebagai contoh.</p>
+<textarea id="fin" placeholder="Mulai dari: semua ingin berhenti, tapi…"></textarea>
+<button onclick="fin(this)">Cek diriku</button>
+<div class="reveal" id="rf"><b>Cek mandiri.</b> Tulisanmu sudah memuat:<div class="chk">
+<label><input type="checkbox"> jebakan: semua ingin berhenti, tak ada yang berani mulai</label>
+<label><input type="checkbox"> yang berubah adalah aturan main, bukan sekadar nasihat</label>
+<label><input type="checkbox"> hakim yang diakui semua pihak</label>
+<label><input type="checkbox"> nilai lama diarahkan ulang, bukan dihapus</label></div>
+<p class="small">Salin tulisanmu dan kirim ke Claude di chat untuk dinilai. Setelah itu lanjut ke potongan 2.</p></div>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+function prog(){const d=document.querySelectorAll('.reveal.show').length;$('pb').style.width=Math.min(100,d/6*100)+'%'}
+function show(id,b){$(id).classList.add('show');b&&(b.style.display='none');prog()}
+const G={a:{r:0,s:0,l:[]},b:{r:0,s:0,l:[]}},R=5;
+function play(m,c){const g=G[m];if(g.r>=R)return;let o,p;
+if(m=='a'){o='Serang';p=c=='Serang'?-2:-3}else{o='Berhenti';p=c=='Serang'?-3:2}
+g.r++;g.s+=p;g.l.push('Ronde '+g.r+': kamu '+c.toLowerCase()+', lawan '+o.toLowerCase()+' → '+(p>0?'+':'')+p);
+$('s'+m).textContent=g.s;$('l'+m).innerHTML=g.l.join('<br>');
+if(g.r>=R){$(m+'S').disabled=$(m+'B').disabled=true}
+if(G.a.r>=R&&G.b.r>=R)show('r2')}
+function ev(){const p=+$('sp').value/100,h=+$('sh').value/100;$('vp').textContent=Math.round(p*100);$('vh').textContent=Math.round(h*100);
+const s=p*2+(1-p)*(-3),a=p*1+(1-p)*(-2)-4*h;
+$('ev1').textContent=s.toFixed(1);$('ev2').textContent=a.toFixed(1);
+$('vd').textContent=s>a?'Berhenti lebih masuk akal. Jebakan terurai.':(Math.abs(s-a)<.05?'Imbang.':'Menyerang masih lebih menguntungkan. Jebakan masih bekerja.')}
+['sp','sh'].forEach(i=>$(i).addEventListener('input',ev));ev();
+function ref(i,b){$('f'+i).classList.add('show');b.classList.add('on');prog()}
+function chk(b){let ok=true;document.querySelectorAll('#chk input').forEach(x=>{if((x.dataset.k=='1')!==x.checked)ok=false});
+$('rc').innerHTML=ok?'✅ Tepat. Pernyataan 1 terlalu mutlak: mereka punya keberanian, keramahan, dan kesetiaan. Pernyataan 3 juga keliru: aturan baru butuh pembawa terpercaya, hakim, dan kelompok yang menjalankan (itu potongan berikutnya).':'🤔 Coba lagi. Petunjuk: cari klaim yang memakai kata “sama sekali” dan “otomatis”. Kata mutlak biasanya jebakan.';
+$('rc').classList.add('show');prog()}
+function fin(b){if(!$('fin').value.trim()){$('fin').placeholder='Tulis dulu, baru kita cek bareng.';return}show('rf',b)}
+</script></body></html>
