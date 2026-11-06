@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dekat Itu Bukan Jarak</title>
+<style>
+:root{--bg:#f6f3ec;--card:#fff;--tx:#1d1b17;--mu:#6b665a;--bd:#e0dacb;--teal:#1f8a82;--orange:#c2691d;--blue:#2d6cb5;--purple:#7a52b3;--bad:#b5452f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0a0a;--card:#141414;--tx:#ece9e2;--mu:#9a968b;--bd:#2a2a2a;--teal:#4fc3b8;--orange:#e39a52;--blue:#6ea4e0;--purple:#a98be0;--bad:#e27a62}}
+:root[data-theme="dark"]{--bg:#0a0a0a;--card:#141414;--tx:#ece9e2;--mu:#9a968b;--bd:#2a2a2a;--teal:#4fc3b8;--orange:#e39a52;--blue:#6ea4e0;--purple:#a98be0;--bad:#e27a62}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:720px;margin:0 auto;padding:22px 16px 80px}
+h1{font-size:1.9rem;line-height:1.2;margin:.2em 0}h2{font-size:1.2rem;margin:.1em 0 .5em}
+.tag{font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--mu)}
+.q{color:var(--mu)}.small{font-size:.88rem;color:var(--mu)}
+section{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--teal);border-radius:12px;padding:18px;margin:20px 0}
+section:nth-of-type(2){border-left-color:var(--orange)}section:nth-of-type(3){border-left-color:var(--blue)}section:nth-of-type(4){border-left-color:var(--purple)}section:nth-of-type(5){border-left-color:var(--teal)}section:nth-of-type(6){border-left-color:var(--orange)}
+button,textarea{font:inherit}
+button{background:var(--teal);color:#06110f;border:0;border-radius:9px;padding:10px 15px;cursor:pointer;font-weight:600}
+button.alt{background:transparent;color:var(--tx);border:1px solid var(--bd);font-weight:500;text-align:left}
+button.alt.on{border-color:var(--teal);background:color-mix(in srgb,var(--teal) 12%,transparent)}
+button:disabled{opacity:.45;cursor:default}
+textarea{width:100%;min-height:90px;padding:12px;border-radius:9px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);margin:8px 0}
+.reveal{display:none;margin-top:12px;padding:12px 14px;border-left:3px solid var(--orange);background:color-mix(in srgb,var(--orange) 10%,transparent);border-radius:6px}
+.reveal.show{display:block}.reveal p{margin:.3em 0}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0;align-items:center}
+.sl{margin:12px 0;font-size:.92rem}.sl label{display:flex;justify-content:space-between;gap:8px}input[type=range]{width:100%;accent-color:var(--teal)}
+.out{font-weight:600;min-height:3.6em;padding:10px 12px;border-radius:8px;border:1px dashed var(--bd)}
+.chk label{display:block;margin:6px 0;cursor:pointer}
+.prog{height:5px;background:var(--bd);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}.prog i{display:block;height:100%;width:0;background:var(--teal);transition:width .4s}
+</style></head><body>
+<div class="prog"><i id="pb"></i></div>
+<main>
+<div class="tag">Pelatih · Belajar sambil berpikir</div>
+<h1>Dekat Itu Bukan Jarak</h1>
+<p class="q">Pertanyaan awal kita: ketika ada yang bertanya tentang Allah, dijawab “Aku dekat”. <b>Apa maksud “dekat” itu?</b></p>
+
+<section>
+<div class="tag">Langkah 1 · Kisahnya</div>
+<h2>Anak perantau dan telepon ibunya</h2>
+<p>Seorang anak merantau ratusan kilometer dari kampung. Suatu malam ia menelepon ibunya. Satu kali dering, langsung diangkat: “Iya, Nak?” Jaraknya jauh, tapi rasanya ibu dekat sekali.</p>
+<p><b>Tebakan:</b> “dekat” di cerita ini diukur dengan apa? Meter, atau yang lain? Tulis jawabanmu.</p>
+<textarea id="t1" placeholder="Tulis tebakanmu…"></textarea>
+<button onclick="show('r1',this,1)">Lihat petunjuk</button>
+<div class="reveal" id="r1"><p>Dekatnya diukur dari <b>didengar dan dijawab</b>, bukan dari jarak. Dalam ayatnya, “Aku dekat” langsung disambung dengan Allah mengabulkan doa orang yang berdoa kepada-Nya.</p><p class="small">Ini perumpamaan untuk membantu membayangkan. Allah tidak serupa makhluk, jadi cara “dekat”-Nya tidak sama dengan kedekatan fisik.</p></div>
+</section>
+
+<section>
+<div class="tag">Langkah 2 · Bandingkan dua model</div>
+<h2>Telepon, atau ibu yang sudah di sebelah?</h2>
+<p>Pilih model, atur keadaannya, lalu panggil. <span class="small">Model sederhana untuk berpikir, bukan data.</span></p>
+<div class="row"><button class="alt on" id="mT" onclick="mode('t')">Model telepon (jembatan)</button><button class="alt" id="mD" onclick="mode('d')">Model sudah dekat</button></div>
+<div id="ctl">
+<div class="sl"><label><span>Sinyal</span><b id="v1"></b></label><input type="range" id="s1" min="0" max="100" value="80"></div>
+<div class="sl"><label><span>Pulsa</span><b id="v2"></b></label><input type="range" id="s2" min="0" max="100" value="60"></div>
+<div class="sl"><label><span>Kesibukan ibu</span><b id="v3"></b></label><input type="range" id="s3" min="0" max="100" value="20"></div>
+</div>
+<div class="row"><button onclick="callIt()">Anak memanggil</button></div>
+<p class="out" id="o2">Atur keadaan, lalu tekan “Anak memanggil”.</p>
+<p><b>Coba:</b> (1) model telepon, sinyal 10. (2) model telepon, pulsa 0. (3) pindah ke model sudah dekat. Apa yang kamu lihat berubah di model kedua?</p>
+</section>
+
+<section>
+<div class="tag">Langkah 3 · Berpikir ulang</div>
+<h2>Saat berdoa, apa yang berubah?</h2>
+<p>Kalau Allah sudah dekat tanpa perlu “disambungkan”, lalu ketika kita berdoa, apa yang berubah: <b>pada Allah, atau pada diri kita?</b> Tulis dengan kata-katamu.</p>
+<textarea id="t3" placeholder="Menurutku yang berubah adalah…"></textarea>
+<div class="row"><button id="hb" onclick="hint()">Halftime: petunjuk pertama</button></div>
+<div class="reveal" id="r3"></div>
+</section>
+
+<section>
+<div class="tag">Langkah 4 · Uji pemahaman</div>
+<h2>Mana yang keliru?</h2>
+<p>Centang pernyataan yang <b>keliru</b>.</p>
+<div class="chk" id="chk">
+<label><input type="checkbox" data-k="1"> “Dekat dalam ayat ini sama persis dengan dekat jarak antar manusia.”</label>
+<label><input type="checkbox" data-k="0"> “Ayat menyambung ‘Aku dekat’ dengan Allah mengabulkan doa.”</label>
+<label><input type="checkbox" data-k="1"> “Doa itu jembatan yang menyeberangkan jarak, bisa putus seperti telepon.”</label>
+<label><input type="checkbox" data-k="0"> “Perumpamaan membantu membayangkan, tapi punya batas.”</label></div>
+<button onclick="chk()">Periksa</button>
+<div class="reveal" id="rc"></div>
+</section>
+
+<section>
+<div class="tag">Langkah 5 · Tugas akhir</div>
+<h2>Jelaskan tanpa catatan</h2>
+<p>Tulis 3 sampai 4 kalimat: apa makna “dekat” dalam ayat ini, dan kenapa perumpamaan telepon perlu dikoreksi?</p>
+<textarea id="fin" placeholder="“Dekat” berarti… Telepon kurang tepat karena…"></textarea>
+<button onclick="fin(this)">Cek diriku</button>
+<div class="reveal" id="rf"><b>Cek mandiri.</b> Tulisanmu sudah memuat:<div class="chk">
+<label><input type="checkbox"> dekat = didengar dan dijawab, bukan soal jarak</label>
+<label><input type="checkbox"> doa bukan jembatan; kedekatan sudah ada lebih dulu</label>
+<label><input type="checkbox"> perumpamaan ibu punya batas: Allah tidak serupa makhluk</label>
+<label><input type="checkbox"> apa yang berubah saat berdoa (jawabanmu di Langkah 3)</label></div>
+<p class="small">Kirim tulisanmu ke Pelatih untuk dinilai. Penutupnya: pakai di satu kasus baru, lalu sebut <b>kapan kerangka ini berlaku dan kapan tidak</b>.</p></div>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id),S=new Set();
+function done(n){S.add(n);$('pb').style.width=S.size/5*100+'%'}
+function show(id,b,n){$(id).classList.add('show');b&&(b.style.display='none');done(n)}
+let M='t';
+function lab(){['1','2','3'].forEach(i=>$('v'+i).textContent=$('s'+i).value)}
+['s1','s2','s3'].forEach(i=>$(i).addEventListener('input',lab));lab();
+function mode(m){M=m;$('mT').classList.toggle('on',m=='t');$('mD').classList.toggle('on',m=='d');$('ctl').style.opacity=m=='t'?1:.35;['s1','s2','s3'].forEach(i=>$(i).disabled=m=='d');$('o2').textContent='Tekan “Anak memanggil”.'}
+function callIt(){let t;
+if(M=='t'){const f=[];if(+$('s1').value<30)f.push('sinyal lemah');if(+$('s2').value<20)f.push('pulsa habis');if(+$('s3').value>70)f.push('ibu sedang sibuk');
+t=f.length?'Gagal tersambung: '+f.join(', ')+'. Jembatan bisa putus.':'Tersambung. Tapi hanya karena semua syarat jembatan terpenuhi.'}
+else t='Terdengar. Tidak ada yang perlu disambungkan. Satu-satunya yang berubah: anak itu menoleh dan menyapa.';
+$('o2').textContent=t;done(2)}
+const H=['Perhatikan perumpamaan ibu di sebelah: saat anak menyapa, yang berubah itu ibunya atau anaknya?','Ayat tidak bilang “Aku akan mendekat kalau kamu berdoa”. Kata “dekat” sudah disebut lebih dulu.','Pikirkan yang berubah pada orang yang berdoa: arah hadap, kesadaran, ke mana ia membawa bebannya.'];
+let hi=0;
+function hint(){const r=$('r3');r.classList.add('show');
+if(hi<3){r.innerHTML+='<p><b>Petunjuk '+(hi+1)+':</b> '+H[hi]+'</p>';hi++;$('hb').textContent=hi<3?'Halftime: petunjuk berikutnya':'Aku menyerah, tunjukkan jawaban'}
+else{r.innerHTML+='<p><b>Jawaban:</b> Yang berubah terutama <b>posisi kita</b>: dari lalai menjadi sadar, dari memikul beban sendirian menjadi menyerahkannya. Kedekatan Allah tidak bergantung pada doa kita. Tapi ayatnya juga menyebut doa itu dikabulkan, jadi doa bukan sekadar menenangkan diri: ia didengar dan dijawab.</p><p class="small">Ini pembacaan umum untuk latihan berpikir. Untuk kajian lebih dalam, rujuk tafsir atau tanya ustaz.</p>';$('hb').style.display='none';done(3)}}
+function chk(){let ok=true;document.querySelectorAll('#chk input').forEach(x=>{if((x.dataset.k=='1')!==x.checked)ok=false});
+$('rc').innerHTML=ok?'✅ Tepat. Pernyataan 1 menyamakan dekat-Nya dengan kedekatan makhluk. Pernyataan 3 memperlakukan doa sebagai jembatan, padahal kedekatan sudah ada lebih dulu.':'🤔 Coba lagi. Petunjuk: cari klaim yang menyamakan Allah dengan benda atau alat buatan manusia.';
+$('rc').classList.add('show');if(ok)done(4)}
+function fin(b){if(!$('fin').value.trim()){$('fin').placeholder='Tulis dulu, baru kita cek bareng.';return}show('rf',b,5)}
+</script></body></html>
