@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "iforeman.sh": {
-    "mtime": 1790513136.02427,
-    "ast_hash": "44ba6aeb612deebd53dfd23748bf551e",
+    "mtime": 1793978519.2318318,
+    "ast_hash": "5c1e53cecc401484dfe3c0bae7ec7301",
     "semantic_hash": ""
   },
   "iforeman-story/Kisah-Babylon/index.html": {
@@ -75,8 +75,8 @@
     "semantic_hash": ""
   },
   "Web-interaktif/index.html": {
-    "mtime": 1793728363.8218527,
-    "ast_hash": "3d8f37b943ed262532f2d98c95876e52",
+    "mtime": 1793978526.7161758,
+    "ast_hash": "4ef266b21db82dab772886a57997e915",
     "semantic_hash": ""
   },
   "Web-interaktif/Jebakan-aturan-main/index.html": {
@@ -102,6 +102,11 @@
   "Web-interaktif/Makna-dekat/index.html": {
     "mtime": 1793974443.45899,
     "ast_hash": "92d2c088ba753aff7a28055d05f27616",
+    "semantic_hash": ""
+  },
+  "Web-interaktif/generate.py": {
+    "mtime": 1793978215.4690719,
+    "ast_hash": "6643329f59e9b39aef91f24dc94c823e",
     "semantic_hash": ""
   }
 }

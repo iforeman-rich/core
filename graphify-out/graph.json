@@ -92,6 +92,61 @@
       "norm_label": "dopost()"
     },
     {
+      "label": "generate.py",
+      "file_type": "code",
+      "source_file": "Web-interaktif/generate.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "web_interaktif_generate",
+      "community": 8,
+      "community_name": "generate.py",
+      "norm_label": "generate.py"
+    },
+    {
+      "label": "judul()",
+      "file_type": "code",
+      "source_file": "Web-interaktif/generate.py",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "web_interaktif_generate_judul",
+      "community": 8,
+      "community_name": "generate.py",
+      "norm_label": "judul()"
+    },
+    {
+      "label": "cari_folder()",
+      "file_type": "code",
+      "source_file": "Web-interaktif/generate.py",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "web_interaktif_generate_cari_folder",
+      "community": 8,
+      "community_name": "generate.py",
+      "norm_label": "cari_folder()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "Web-interaktif/generate.py",
+      "source_location": "L111",
+      "_origin": "ast",
+      "id": "web_interaktif_generate_main",
+      "community": 8,
+      "community_name": "generate.py",
+      "norm_label": "main()"
+    },
+    {
+      "label": "penjual-jamu_yang-menunda' -> 'Penjual Jamu Yang Menunda",
+      "file_type": "rationale",
+      "source_file": "Web-interaktif/generate.py",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "web_interaktif_generate_rationale_28",
+      "community": 8,
+      "community_name": "generate.py",
+      "norm_label": "penjual-jamu_yang-menunda' -> 'penjual jamu yang menunda"
+    },
+    {
       "label": "script.js",
       "file_type": "code",
       "source_file": "iforeman-story/Kisah-Babylon/script.js",
@@ -674,6 +729,74 @@
       "_origin": "ast",
       "source": "quesioner_apps_script_code_gs_dopost",
       "target": "quesioner_apps_script_code_gs_guard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Web-interaktif/generate.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "web_interaktif_generate",
+      "target": "web_interaktif_generate_cari_folder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Web-interaktif/generate.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "web_interaktif_generate",
+      "target": "web_interaktif_generate_judul",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Web-interaktif/generate.py",
+      "source_location": "L111",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "web_interaktif_generate",
+      "target": "web_interaktif_generate_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Web-interaktif/generate.py",
+      "source_location": "L120",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "web_interaktif_generate_main",
+      "target": "web_interaktif_generate_judul",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "Web-interaktif/generate.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "web_interaktif_generate_rationale_28",
+      "target": "web_interaktif_generate_judul",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "Web-interaktif/generate.py",
+      "source_location": "L112",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "web_interaktif_generate_main",
+      "target": "web_interaktif_generate_cari_folder",
       "confidence_score": 1.0
     },
     {
@@ -1413,5 +1536,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "29021c4cbcdef21c77dd964732c84e834fe3129d"
+  "built_at_commit": "99fe4f9e9d10b2407cc696a4f7b14042245db8e2"
 }

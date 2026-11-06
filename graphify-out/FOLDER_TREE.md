@@ -1,4 +1,4 @@
-# Folder Tree (21 files tracked)
+# Folder Tree (22 files tracked)
 
 > Auto-generated dari manifest.json — jangan edit manual. Regenerate: gen-folder-tree.py <path-manifest.json>
 
@@ -29,6 +29,7 @@
 │   │   └── index.html
 │   ├── Penjual-jamu-yang-menunda/
 │   │   └── index.html
+│   ├── generate.py
 │   └── index.html
 ├── iforeman-story/
 │   ├── Kisah-Babylon/

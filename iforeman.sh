@@ -16,9 +16,11 @@
 #   5  manifest.json tidak ada setelah graphify update
 #   6  gen-folder-tree.py gagal
 #   7  git push gagal
+#   8  generate.py (index Web-interaktif) gagal / tidak ditemukan
 
 PROJECT_DIR="$HOME/iforeman-rich"
 LOG="$PROJECT_DIR/push.log"
+WEB_DIR="$PROJECT_DIR/Web-interaktif"
 
 cd "$PROJECT_DIR" || exit 1
 
@@ -29,6 +31,23 @@ if [ -z "$SSH_AUTH_SOCK" ] || [ ! -S "$SSH_AUTH_SOCK" ]; then
         export SSH_AUTH_SOCK="$SSH_AGENT_SOCK"
     fi
 fi
+
+# ── [Web-interaktif] Generate index.html dari daftar subfolder ───────────
+# Dijalankan SEBELUM graphify supaya index.html terbaru ikut terbaca graph
+# dan ikut ter-commit di push ini.
+if [ ! -f "$WEB_DIR/generate.py" ]; then
+    echo "$(date '+%H:%M') [Web] ERROR: generate.py tidak ada: $WEB_DIR/generate.py" >> "$LOG"
+    echo "❌ generate.py tidak ditemukan di $WEB_DIR — push dibatalkan."
+    exit 8
+fi
+
+echo "$(date '+%H:%M') [Web] generate.py ..." >> "$LOG"
+if ! python3 "$WEB_DIR/generate.py" >> "$LOG" 2>&1; then
+    echo "$(date '+%H:%M') [Web] ERROR: generate.py gagal." >> "$LOG"
+    echo "❌ generate.py GAGAL — push dibatalkan. Cek $LOG"
+    exit 8
+fi
+echo "$(date '+%H:%M') [Web] generate.py OK." >> "$LOG"
 
 # ── [Graphify] Update graph sebelum commit/push ──────────────────────────
 # Urutan: graphify update → cek manifest → gen-folder-tree → (git add kalau tracked).

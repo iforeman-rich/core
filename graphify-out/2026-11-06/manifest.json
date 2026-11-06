@@ -1,0 +1,107 @@
+{
+  "iforeman-story/Kisah-Babylon/script.js": {
+    "mtime": 1788949135.3214695,
+    "ast_hash": "f47e84465c79b491eb756bc1fbdf0716",
+    "semantic_hash": ""
+  },
+  "iforeman-story/apps-script/code.gs.js": {
+    "mtime": 1788946960.2547204,
+    "ast_hash": "f47149029d59d799badce8782ff7b490",
+    "semantic_hash": ""
+  },
+  "iforeman-story/iforeman-push.sh": {
+    "mtime": 1788700271.3280306,
+    "ast_hash": "504121b1e54ec8f98520f23153fb632f",
+    "semantic_hash": ""
+  },
+  "iforeman.sh": {
+    "mtime": 1790513136.02427,
+    "ast_hash": "44ba6aeb612deebd53dfd23748bf551e",
+    "semantic_hash": ""
+  },
+  "iforeman-story/Kisah-Babylon/index.html": {
+    "mtime": 1789034188.6223404,
+    "ast_hash": "70355177164a33243ceaa61d7dc43c48",
+    "semantic_hash": ""
+  },
+  "iforeman-story/Kisah-Babylon/sumber-asli.md": {
+    "mtime": 1788671551.44694,
+    "ast_hash": "c0f706a8af8a108104ccf81c6ff3c07e",
+    "semantic_hash": ""
+  },
+  "reminder/index.html": {
+    "mtime": 1790601164.9966657,
+    "ast_hash": "1c234d5ac7ff5cadc2f43181c0ca8dbb",
+    "semantic_hash": ""
+  },
+  "SIBI/Tiup_Tiup.pdf": {
+    "mtime": 1790337534.327064,
+    "ast_hash": "620cc053d695dc4c1bc7a6e8d620bc7b",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1790513389.99414,
+    "ast_hash": "7201ddc694c58137dd78279e5c4cd3b7",
+    "semantic_hash": ""
+  },
+  ".github/workflows/static.yml": {
+    "mtime": 1790514751.4163404,
+    "ast_hash": "4bbcd37da310febbd93503bd5d458eb7",
+    "semantic_hash": ""
+  },
+  "Quesioner/apps-script/code.gs.js": {
+    "mtime": 1790858116.643212,
+    "ast_hash": "1af322bcdf22c070a54c291403f9a79a",
+    "semantic_hash": ""
+  },
+  "Quesioner/Menerka-Masa-Depan/config.js": {
+    "mtime": 1790858452.3351378,
+    "ast_hash": "bbf8173e4fcf67479a7170341c5aeef8",
+    "semantic_hash": ""
+  },
+  "Quesioner/Menerka-Masa-Depan/index.html": {
+    "mtime": 1790861894.120022,
+    "ast_hash": "9a054ac3c806be39d9b52016f7de3baa",
+    "semantic_hash": ""
+  },
+  "Web-interaktif/Benih-berkualitas/index.html": {
+    "mtime": 1793707498.5037656,
+    "ast_hash": "8c344e69416401620772956747e7c85f",
+    "semantic_hash": ""
+  },
+  "Web-interaktif/Jalan-seorang-pecinta/index.html": {
+    "mtime": 1793708178.6137657,
+    "ast_hash": "83ef8a6a31e87b3cb670a888ad74150d",
+    "semantic_hash": ""
+  },
+  "Web-interaktif/index.html": {
+    "mtime": 1793728363.8218527,
+    "ast_hash": "3d8f37b943ed262532f2d98c95876e52",
+    "semantic_hash": ""
+  },
+  "Web-interaktif/Jebakan-aturan-main/index.html": {
+    "mtime": 1793728087.501803,
+    "ast_hash": "6f0b8d31273b75fdc76231a676c70205",
+    "semantic_hash": ""
+  },
+  "Web-interaktif/Berubah-tidak-sendirian/index.html": {
+    "mtime": 1793728066.030095,
+    "ast_hash": "0ecbc59a2d64dc13194e9e3feddf37f6",
+    "semantic_hash": ""
+  },
+  "Web-interaktif/Pembawa-dan-hakim/index.html": {
+    "mtime": 1793728110.5261028,
+    "ast_hash": "581a2939d8f3d3cb26eb883115359cc3",
+    "semantic_hash": ""
+  },
+  "Web-interaktif/Penjual-jamu-yang-menunda/index.html": {
+    "mtime": 1793728149.1338372,
+    "ast_hash": "8772256ac72b5ffb9271afef58a97e82",
+    "semantic_hash": ""
+  },
+  "Web-interaktif/Makna-dekat/index.html": {
+    "mtime": 1793974443.45899,
+    "ast_hash": "92d2c088ba753aff7a28055d05f27616",
+    "semantic_hash": ""
+  }
+}

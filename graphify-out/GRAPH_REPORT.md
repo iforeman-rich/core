@@ -1,16 +1,16 @@
-# Graph Report - iforeman-rich  (2026-10-01)
+# Graph Report - iforeman-rich  (2026-11-06)
 
 ## Corpus Check
-- 8 files · ~8,736 words
+- 9 files · ~16,352 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 47 nodes · 76 edges · 10 communities (7 shown, 3 thin omitted)
+- 52 nodes · 82 edges · 11 communities (8 shown, 3 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `29021c4c`
+- Built from commit: `99fe4f9e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -22,6 +22,7 @@
 - iforeman-story/apps-script/code.gs.js
 - Quesioner/apps-script/code.gs.js
 - iforeman.sh
+- generate.py
 - iforeman-push.sh
 - README.md
 
@@ -48,7 +49,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (10 total, 3 thin omitted)
+## Communities (11 total, 3 thin omitted)
 
 ### Community 0 - "script.js"
 Cohesion: 0.60
@@ -74,6 +75,10 @@ Nodes (8): assembleContent(), doGet(), getBenangMerah_(), getKisah_(), getKoment
 Cohesion: 0.57
 Nodes (6): doGet(), doPost(), ensureSheet_(), guard_(), json_(), setup_()
 
+### Community 8 - "generate.py"
+Cohesion: 0.60
+Nodes (4): cari_folder(), judul(), main(), penjual-jamu_yang-menunda' -> 'Penjual Jamu Yang Menunda
+
 ## Knowledge Gaps
 - **8 isolated node(s):** `iforeman-push.sh script`, `iforeman.sh script`, `core`, `core`, `Kisah Pertama: Naran dan Sungai yang Tidak Peduli` (+3 more)
   These have ≤1 connection - possible missing edges or undocumented components.
@@ -83,8 +88,8 @@ Nodes (6): doGet(), doPost(), ensureSheet_(), guard_(), json_(), setup_()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `render()` connect `script.js` to `renderKisah`, `el`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
-- **Why does `el()` connect `el` to `script.js`, `renderKisah`?**
   _High betweenness centrality (0.005) - this node is a cross-community bridge._
+- **Why does `el()` connect `el` to `script.js`, `renderKisah`?**
+  _High betweenness centrality (0.004) - this node is a cross-community bridge._
 - **What connects `iforeman-push.sh script`, `iforeman.sh script`, `core` to the rest of the system?**
   _8 weakly-connected nodes found - possible documentation gaps or missing edges._
