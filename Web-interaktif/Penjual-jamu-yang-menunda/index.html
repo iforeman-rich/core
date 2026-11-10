@@ -11,9 +11,9 @@ body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 system-ui,-app
 main{max-width:720px;margin:0 auto;padding:22px 16px 80px}
 h1{font-size:1.9rem;line-height:1.2;margin:.2em 0}h2{font-size:1.2rem;margin:.1em 0 .5em}
 .tag{font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--mu)}
-.q{color:var(--mu)}.small{font-size:.88rem;color:var(--mu)}
+.q,.small{color:var(--mu)}.small{font-size:.88rem}
 section{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--teal);border-radius:12px;padding:18px;margin:20px 0}
-section:nth-of-type(2){border-left-color:var(--orange)}section:nth-of-type(3){border-left-color:var(--blue)}section:nth-of-type(4){border-left-color:var(--purple)}section:nth-of-type(5){border-left-color:var(--teal)}section:nth-of-type(6){border-left-color:var(--orange)}
+section:nth-of-type(2){border-left-color:var(--orange)}section:nth-of-type(3){border-left-color:var(--blue)}section:nth-of-type(4){border-left-color:var(--purple)}section:nth-of-type(6){border-left-color:var(--orange)}
 button,textarea{font:inherit}
 button{background:var(--teal);color:#06110f;border:0;border-radius:9px;padding:10px 15px;cursor:pointer;font-weight:600}
 button.alt{background:transparent;color:var(--tx);border:1px solid var(--bd);font-weight:500;text-align:left}
@@ -27,16 +27,16 @@ textarea{width:100%;min-height:90px;padding:12px;border-radius:9px;border:1px so
 .meter i{position:absolute;top:0;bottom:0;transition:all .3s}
 .meter b{position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--tx);opacity:.6}
 .scale{display:flex;justify-content:space-between;font-size:.75rem;color:var(--mu)}
-.big{font-size:1.4rem;font-weight:700}
 .verdict{font-weight:600;min-height:3.4em}
+.eff{font-size:.88rem;color:var(--mu);margin:4px 0}
 .chk label{display:block;margin:6px 0;cursor:pointer}
 .prog{height:5px;background:var(--bd);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}.prog i{display:block;height:100%;width:0;background:var(--teal);transition:width .4s}
 </style></head><body>
 <div class="prog"><i id="pb"></i></div>
 <main>
-<div class="tag">Belajar sambil berpikir</div>
+<div class="tag">Potongan 3 dari 5 · Belajar sambil berpikir</div>
 <h1>Penjual Jamu yang Menunda</h1>
-<p class="q">Di potongan 1 dan 2 aturan sudah ada, pembawa dan hakim juga ada. Tapi hari ini banyak orang tahu manfaatnya dan tetap menunda. Kenapa?</p>
+<p class="q">Aturan sudah ada, pembawa dan hakim juga ada. Tapi banyak orang tahu manfaatnya dan tetap menunda. Sebaliknya, para sahabat menjalankan perintah yang berat dan menjauhi godaan yang kuat. Apa bedanya?</p>
 
 <section>
 <div class="tag">Langkah 1 · Kisahnya</div>
@@ -46,7 +46,7 @@ textarea{width:100%;min-height:90px;padding:12px;border-radius:9px;border:1px so
 <p><b>Tebakan:</b> Pak Darto tahu manfaatnya. Jadi kenapa ia menunda? Tulis alasanmu.</p>
 <textarea id="t1" placeholder="Tulis tebakanmu…"></textarea>
 <button onclick="show('r1',this)">Lihat petunjuk</button>
-<div class="reveal" id="r1">Kalau masalahnya hanya kurang tahu, Pak Darto sudah lulus. Jadi penjelasan “kurang paham” belum cukup. Perhatikan <b>kapan biaya dan kapan imbalannya</b>: bangun pagi bayar <b>hari ini</b> (kantuk, dingin), imbalannya datang <b>belasan tahun lagi</b>. Di langkah berikutnya kita ukur.</div>
+<div class="reveal" id="r1">Kalau masalahnya hanya kurang tahu, Pak Darto sudah lulus. Perhatikan <b>kapan biaya dan kapan imbalannya</b>: bangun pagi bayar <b>hari ini</b> (kantuk, dingin), imbalannya datang <b>belasan tahun lagi</b>. Di langkah berikutnya kita ukur.</div>
 </section>
 
 <section>
@@ -57,10 +57,12 @@ textarea{width:100%;min-height:90px;padding:12px;border-radius:9px;border:1px so
 <div class="sl"><label><span>Besarnya imbalan nanti</span><b id="v2"></b></label><input type="range" id="s2" min="0" max="100" value="90"></div>
 <div class="sl"><label><span>Imbalan datang berapa hari lagi?</span><b id="v3"></b></label><input type="range" id="s3" min="1" max="3650" value="365"></div>
 <div class="sl"><label><span>Hakim terasa dekat (diingat setiap hari)</span><b id="v4"></b></label><input type="range" id="s4" min="0" max="100" value="10"></div>
+<div class="sl"><label><span>Cinta kepada yang diperintah dan memerintah</span><b id="v5"></b></label><input type="range" id="s5" min="0" max="100" value="10"></div>
+<div class="eff" id="eff"></div>
 <div class="meter"><i id="mi"></i><b></b></div>
 <div class="scale"><span>Tunda</span><span>Mulai</span></div>
 <p class="verdict" id="vd"></p>
-<p><b>Coba:</b> naikkan imbalan ke 100 tapi biarkan jaraknya 365 hari. Apakah Pak Darto jadi bangun? Lalu pendekkan jaraknya. Mana yang lebih berpengaruh: <i>besar imbalan</i> atau <i>dekat imbalan</i>?</p>
+<p><b>Coba tiga percobaan:</b> (1) Naikkan hakim ke 100, cinta tetap kecil. (2) Naikkan cinta ke 100, hakim tetap kecil. (3) Naikkan keduanya. Tuas mana yang mengubah <i>jarak imbalan</i>, dan tuas mana yang mengubah <i>beratnya usaha yang terasa</i>?</p>
 </section>
 
 <section>
@@ -71,22 +73,23 @@ textarea{width:100%;min-height:90px;padding:12px;border-radius:9px;border:1px so
 <button class="alt" data-l="a">Kecilkan langkah pertama: cukup duduk di teras 2 menit</button>
 <button class="alt" data-l="b">Umpan balik cepat: setiap selesai, langsung dicentang dan terasa enak</button>
 <button class="alt" data-l="c">Ada yang melihat: janjian jalan pagi dengan tetangga</button>
-<button class="alt" data-l="d">Hadirkan imbalan dan hakim: pengingat harian yang membuat tujuan akhir terasa dekat</button></div>
+<button class="alt" data-l="d">Hadirkan hakim: pengingat harian yang membuat hari perhitungan terasa dekat</button>
+<button class="alt" data-l="e">Tumbuhkan cinta: kenali dan renungkan kebaikan yang memerintah, supaya taat terasa manis</button></div>
 <div class="meter"><i id="mi2"></i><b></b></div>
 <div class="scale"><span>Tunda</span><span>Mulai</span></div>
 <p class="verdict" id="vd2"></p>
 <button onclick="show('r3',this)">Apa temuannya?</button>
-<div class="reveal" id="r3">Dengan angka awal, <b>satu tuas saja biasanya belum cukup</b>. Kombinasi dua tuas sudah bisa membalik keputusan. Artinya menunda bukan soal malas atau bodoh, tapi soal <b>desain</b>: biaya terasa sekarang, imbalan terasa jauh, tidak ada yang melihat, tidak ada umpan balik.</div>
+<div class="reveal" id="r3">Dengan angka awal, <b>satu tuas saja biasanya belum cukup</b>. Menunda bukan soal malas atau bodoh, tapi soal <b>desain</b>. Perhatikan juga dua tuas yang bekerja lewat jalur berbeda: <b>hakim</b> memendekkan jarak imbalan (takut dan harap terasa sekarang), <b>cinta</b> meringankan usaha yang terasa (taatnya sendiri sudah manis). Para sahabat memiliki keduanya, itu sebabnya beratnya perintah tidak menghentikan mereka.</div>
 </section>
 
 <section>
 <div class="tag">Langkah 4 · Sambungkan ke kerangkamu</div>
 <h2>Dugaan yang perlu diuji</h2>
-<p>Dugaan awalmu: banyak orang hanya tahu aturannya, kurang paham hakim dan imbalan. Kita sudah lihat bahwa tahu saja tidak cukup. Tapi ada pertanyaan yang belum terjawab:</p>
+<p>Dugaan awalmu: banyak orang hanya tahu aturannya, kurang merasakan hakim dan cinta. Kita sudah lihat bahwa tahu saja tidak cukup. Tapi ada pertanyaan yang belum terjawab:</p>
 <p><b>Bagaimana cara kita menguji</b> bahwa orang “hanya tahu aturan”, bukan sekadar menebaknya? Tulis idemu.</p>
 <textarea id="t4" placeholder="Misalnya: tanyakan ke…"></textarea>
 <button onclick="show('r4',this)">Lihat contoh cara uji</button>
-<div class="reveal" id="r4">Beberapa cara: tanya orang sekitar <i>“apa imbalan dan hakimnya, dan seberapa terasa buatmu?”</i> bukan hanya <i>“apa hukumnya?”</i>. Bandingkan yang paham dengan yang tidak: apakah yang paham lebih konsisten? Cari juga orang yang <b>paham tapi tetap menunda</b>, seperti Pak Darto. Selama dugaan itu belum diuji, tulis sebagai <b>dugaan</b>, bukan fakta.</div>
+<div class="reveal" id="r4">Beberapa cara: tanya orang sekitar <i>“apa imbalan dan hakimnya, dan seberapa terasa buatmu?”</i> bukan hanya <i>“apa hukumnya?”</i>. Tanya juga <i>“apakah kamu menikmatinya, atau sekadar menjalankan?”</i>. Cari orang yang <b>paham tapi tetap menunda</b>, seperti Pak Darto. Selama dugaan itu belum diuji, tulis sebagai <b>dugaan</b>, bukan fakta.</div>
 </section>
 
 <section>
@@ -97,7 +100,8 @@ textarea{width:100%;min-height:90px;padding:12px;border-radius:9px;border:1px so
 <label><input type="checkbox" data-k="1"> “Orang menunda karena tidak tahu manfaatnya.”</label>
 <label><input type="checkbox" data-k="0"> “Biaya yang terasa hari ini sering mengalahkan imbalan yang datang jauh nanti.”</label>
 <label><input type="checkbox" data-k="1"> “Cukup memperbesar imbalan, jaraknya tidak penting.”</label>
-<label><input type="checkbox" data-k="0"> “Aturan saja tidak kuat mengubah perilaku.”</label></div>
+<label><input type="checkbox" data-k="0"> “Hakim yang terasa dekat membuat imbalan dan hukuman terasa dekat.”</label>
+<label><input type="checkbox" data-k="1"> “Orang yang cinta merasa ringan karena kerjanya memang lebih sedikit.”</label></div>
 <button onclick="chk(this)">Periksa</button>
 <div class="reveal" id="rc"></div>
 </section>
@@ -105,14 +109,14 @@ textarea{width:100%;min-height:90px;padding:12px;border-radius:9px;border:1px so
 <section>
 <div class="tag">Langkah 6 · Tugas akhir</div>
 <h2>Jelaskan dengan kata-katamu sendiri</h2>
-<p>Tulis 3 sampai 4 kalimat: kenapa Pak Darto yang tahu manfaatnya tetap menunda, dan apa yang bisa mengubahnya?</p>
+<p>Tulis 3 sampai 4 kalimat: kenapa Pak Darto yang tahu manfaatnya tetap menunda, dan apa yang membuat para sahabat kuat taat walau perintahnya berat?</p>
 <textarea id="fin" placeholder="Pak Darto menunda bukan karena tidak tahu, tetapi…"></textarea>
 <button onclick="fin(this)">Cek diriku</button>
 <div class="reveal" id="rf"><b>Cek mandiri.</b> Tulisanmu sudah memuat:<div class="chk">
 <label><input type="checkbox"> tahu saja belum cukup (bukan soal kurang paham)</label>
 <label><input type="checkbox"> biaya sekarang vs imbalan nanti dan tak ada umpan balik awal</label>
-<label><input type="checkbox"> hakim dan imbalan tidak terasa dekat, tidak ada yang melihat</label>
-<label><input type="checkbox"> perubahan lewat desain, biasanya dengan beberapa tuas sekaligus</label></div>
+<label><input type="checkbox"> hakim yang terasa dekat memendekkan jarak imbalan</label>
+<label><input type="checkbox"> cinta membuat usaha yang sama beratnya terasa lebih ringan</label></div>
 <p class="small">Kirim tulisanmu ke Claude untuk dinilai. Potongan 4 menyambung: tuas “ada yang melihat” ternyata bisa jadi pedang bermata dua, yaitu <b>kelompok yang mengucilkan yang taat</b>.</p></div>
 </section>
 </main>
@@ -120,21 +124,27 @@ textarea{width:100%;min-height:90px;padding:12px;border-radius:9px;border:1px so
 const $=id=>document.getElementById(id);
 function prog(){$('pb').style.width=Math.min(100,document.querySelectorAll('.reveal.show').length/5*100)+'%'}
 function show(id,b){$(id).classList.add('show');b&&(b.style.display='none');prog()}
-function dor(c,R,d,h,fb,so){return R/(1+d/30)+h*.3+fb+so-c}
+/* c=usaha, R=imbalan, d=hari, h=hakim, k=cinta (0-100), fb=umpan balik, so=dilihat orang */
+function calc(c,R,d,h,k,fb,so){
+const ce=c*(1-.8*k/100);            /* cinta meringankan usaha yang terasa */
+const de=Math.max(1,d*(1-.9*h/100)); /* hakim dekat memendekkan jarak imbalan */
+return{x:R/(1+de/30)+h*.2+fb+so-ce,ce:ce,de:de}}
 function paint(el,x){const v=Math.max(-60,Math.min(60,x)),w=Math.abs(v)/60*50;const i=$(el);i.style.width=w+'%';i.style.left=v>=0?'50%':(50-w)+'%';i.style.background=v>=0?'var(--teal)':'var(--bad)'}
-function base(){return{c:+$('s1').value,R:+$('s2').value,d:+$('s3').value,h:+$('s4').value}}
-function main(){const b=base();$('v1').textContent=b.c;$('v2').textContent=b.R;$('v3').textContent=b.d+' hari';$('v4').textContent=b.h;
-const x=dor(b.c,b.R,b.d,b.h,0,0);paint('mi',x);
-$('vd').textContent=x>0?'Dorongan melewati garis: kemungkinan besar mulai hari ini.':(x>-20?'Hampir. Sedikit tambahan bisa membalik keputusan.':'Menunda masuk akal di kondisi ini, meski tahu manfaatnya.');lev()}
+function base(){return{c:+$('s1').value,R:+$('s2').value,d:+$('s3').value,h:+$('s4').value,k:+$('s5').value}}
+function main(){const b=base();
+$('v1').textContent=b.c;$('v2').textContent=b.R;$('v3').textContent=b.d+' hari';$('v4').textContent=b.h;$('v5').textContent=b.k;
+const r=calc(b.c,b.R,b.d,b.h,b.k,0,0);paint('mi',r.x);
+$('eff').textContent='Yang terasa: usaha '+Math.round(r.ce)+' (dari '+b.c+'), imbalan terasa datang '+Math.round(r.de)+' hari lagi.';
+$('vd').textContent=r.x>0?'Dorongan melewati garis: kemungkinan besar mulai hari ini.':(r.x>-20?'Hampir. Sedikit tambahan bisa membalik keputusan.':'Menunda masuk akal di kondisi ini, meski tahu manfaatnya.');lev()}
 const L={};
 document.querySelectorAll('#lev button').forEach(bt=>bt.onclick=()=>{L[bt.dataset.l]=!L[bt.dataset.l];bt.classList.toggle('on',!!L[bt.dataset.l]);lev()});
-function lev(){const b=base();let c=b.c,d=b.d,h=b.h,fb=0,so=0;
-if(L.a)c*=.3;if(L.b)fb=25;if(L.c)so=20;if(L.d){d*=.25;h=Math.max(h,70)}
-const x=dor(c,b.R,d,h,fb,so);paint('mi2',x);const n=Object.values(L).filter(Boolean).length;
-$('vd2').textContent=n==0?'Pilih satu tuas atau lebih.':(x>0?'Melewati garis dengan '+n+' tuas. Sekarang mulai terasa masuk akal.':'Belum melewati garis. Coba tambah tuas lain.')}
-['s1','s2','s3','s4'].forEach(i=>$(i).addEventListener('input',main));main();
+function lev(){const b=base();let c=b.c,h=b.h,k=b.k,fb=0,so=0;
+if(L.a)c*=.3;if(L.b)fb=25;if(L.c)so=20;if(L.d)h=Math.max(h,70);if(L.e)k=Math.max(k,70);
+const r=calc(c,b.R,b.d,h,k,fb,so);paint('mi2',r.x);const n=Object.values(L).filter(Boolean).length;
+$('vd2').textContent=n==0?'Pilih satu tuas atau lebih.':(r.x>0?'Melewati garis dengan '+n+' tuas. Sekarang mulai terasa masuk akal.':'Belum melewati garis. Coba tambah tuas lain.')}
+['s1','s2','s3','s4','s5'].forEach(i=>$(i).addEventListener('input',main));main();
 function chk(b){let ok=true;document.querySelectorAll('#chk input').forEach(x=>{if((x.dataset.k=='1')!==x.checked)ok=false});
-$('rc').innerHTML=ok?'✅ Tepat. Pernyataan 1 dibantah Pak Darto: ia tahu, tapi menunda. Pernyataan 3 keliru karena imbalan yang jauh terasa kecil, sebesar apa pun.':'🤔 Coba lagi. Petunjuk: ingat Pak Darto dan slider jarak imbalan di langkah 2.';
+$('rc').innerHTML=ok?'✅ Tepat. Pernyataan 1 dibantah Pak Darto: ia tahu, tapi menunda. Pernyataan 3 keliru karena imbalan yang jauh terasa kecil. Pernyataan 5 keliru: kerjanya sama berat, yang berubah adalah rasanya.':'🤔 Coba lagi. Petunjuk: ingat Pak Darto, slider jarak imbalan, dan beda antara <i>berat</i> dan <i>terasa berat</i>.';
 $('rc').classList.add('show');prog()}
 function fin(b){if(!$('fin').value.trim()){$('fin').placeholder='Tulis dulu, baru kita cek bareng.';return}show('rf',b)}
 </script></body></html>
