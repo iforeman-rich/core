@@ -75,7 +75,7 @@
     "semantic_hash": ""
   },
   "Web-interaktif/index.html": {
-    "mtime": 1794317857.3651073,
+    "mtime": 1795346567.8785887,
     "ast_hash": "4ef266b21db82dab772886a57997e915",
     "semantic_hash": ""
   },
@@ -107,6 +107,11 @@
   "Web-interaktif/generate.py": {
     "mtime": 1793978215.4690719,
     "ast_hash": "6643329f59e9b39aef91f24dc94c823e",
+    "semantic_hash": ""
+  },
+  "MAO-Website/index.html": {
+    "mtime": 1795346550.1470623,
+    "ast_hash": "19fd870c3514badf645643ff34c11f8a",
     "semantic_hash": ""
   }
 }
